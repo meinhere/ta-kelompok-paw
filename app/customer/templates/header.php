@@ -1,4 +1,11 @@
 <?php require_once "../base.php" ?>
+<?php 
+// session_start();
+// if(!isset($_SESSION['login']) && $_SESSION['login'] != "customer") {
+//     header("Location: " . BASEURL . "/app/login.php");
+//     exit();
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +16,7 @@
     <link rel="stylesheet" href="<?= BASEURL;?>/assets/css/base.css">
     <link rel="stylesheet" href="<?= BASEURL;?>/assets/css/customer/navbar.css">
     <link rel="stylesheet" href="<?= BASEURL;?>/assets/css/customer/styles.css">
-    <title>Daftar Pesanan</title>
+    <title><?= $title; ?></title>
 </head>
 
 <body>

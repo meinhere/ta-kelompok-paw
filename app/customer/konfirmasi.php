@@ -1,4 +1,9 @@
+<?php 
+$title = "Konfirmasi Pembayaran | JapanFoods";
+$page = "konfpem";
+?>
 <?php include "templates/header.php" ?>
+<?php include "templates/navbar.php" ?>
 <div class="content">
     <div class="konfirmasi-bayar-page">
       <div class="header">

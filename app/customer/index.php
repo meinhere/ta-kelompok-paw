@@ -1,3 +1,7 @@
+<?php 
+$title = "Beranda | JapanFoods";
+$page = "home";
+?>
 <?php include "templates/header.php" ?>
 <div class="home-page">
   <!-- Header Start -->

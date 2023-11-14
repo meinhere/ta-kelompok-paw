@@ -1,6 +1,11 @@
 <?php 
 
+define("HOST", "localhost");
+define("DBNAME", "japanfoods");
+define("USERNAME", "root");
+define("PASSWORD", "");
+
 define("BASEURL", "http://localhost:8080/paw/ta");
-define("BASEPATH", $_SERVER["DOCUMENT_ROOT"] . "/paw/ta");
-define("DB", new PDO('mysql:host=localhost;dbname=japanfoods', 'root', '', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]));
-?>
+define("BASEASSET", "http://localhost:8080/paw/ta/assets");
+
+define("DB", new PDO('mysql:host=' . HOST . ';dbname=' . DBNAME, USERNAME, PASSWORD, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]));

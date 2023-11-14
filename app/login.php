@@ -1,3 +1,7 @@
+<?php 
+$title = "Login | JapanFoods";
+$page = "login";
+?>
 <?php include "templates/header.php" ?>
 <div class="content middle">
     <div class="login">

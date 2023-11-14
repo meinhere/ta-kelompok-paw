@@ -1,3 +1,7 @@
+<?php 
+$title = "Register | JapanFoods";
+$page = "regist";
+?>
 <?php include "templates/header.php" ?>
 <div class="content middle">
     <div class="register">

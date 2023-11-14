@@ -1,3 +1,7 @@
+<?php 
+$title = "Daftar Pesanan | JapanFoods";
+$page = "dafpes";
+?>
 <?php include "templates/header.php" ?>  
 <?php include "templates/navbar.php" ?>
 <div class="content">
