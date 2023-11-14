@@ -1,6 +1,9 @@
+<?php 
+$title = "Detail Pesanan | JapanFoods";
+$page = "detpes";
+?>
 <?php include "templates/header.php" ?> 
 <?php include "templates/navbar.php" ?>
-
 <div class="content">
     <div class="detail-pesanan-page">
         <div class="header">

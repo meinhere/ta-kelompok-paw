@@ -1,3 +1,7 @@
+<?php 
+$title = "Menu | JapanFoods";
+$page = "menu";
+?>
 <?php include "templates/header.php" ?>
 <nav class="side-nav">
   <ul class="nav-links">
