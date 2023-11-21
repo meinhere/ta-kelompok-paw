@@ -24,16 +24,11 @@
 }
 .table-style tr td {
   font-size: 1rem;
-  padding: 1rem 0.7rem;
+  padding: 0.4rem 0.7rem;
   border-bottom: 1px solid rgb(87, 85, 85);
 }
-.table-style tr td img {
-  width: 70px;
-}
-.table-style tr td.nama-makanan {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.table-style .empty-orders {
+  padding: 3rem 0;
 }
 
 /* Hero Section */
@@ -69,13 +64,12 @@
   color: white;
 }
 .hero .content .title {
-  text-transedit-form: uppercase;
   font-weight: 700;
   font-size: 1.1rem;
 }
 .hero .content h1 {
   font-size: 4.7rem;
-  font-family: "Catchy Mager";
+  font-family: "Source Code Pro";
 }
 .hero .content p {
   font-size: 1rem;
@@ -177,12 +171,18 @@ footer {
   color: #fdfdfd;
   border-radius: 0.3rem;
 }
-.detail-pesanan-page .report a {
+.detail-pesanan-page .report a,
+.detail-pesanan-page .report button {
   padding: 5px 10px;
   margin-right: 0.7rem;
   background-color: var(--yellow);
+  font-size: 1rem;
   color: var(--dark);
+  font-family: "Quicksand";
   border-radius: 0.3rem;
+}
+.detail-pesanan-page .report button:hover {
+  cursor: pointer;
 }
 
 /* Menu Page */
@@ -233,6 +233,10 @@ footer {
 }
 .menu-list {
   padding-left: 3.5rem;
+  width: 70%;
+}
+.carts {
+  width: 30%;
 }
 .main-menu .menu-list .description {
   color: var(--light);
@@ -302,12 +306,16 @@ footer {
   cursor: pointer;
   box-shadow: 1px 5px 12px rgba(38, 43, 47, 0.8);
 }
+.menu-card .menu-btn.check {
+  background-color: var(--green);
+  color: var(--yellow);
+  cursor: default;
+}
 
 /* Carts */
 .carts {
   width: 40%;
   color: var(--light);
-  text-transedit-form: capitalize;
   padding-right: 1.5rem;
 }
 .carts-detail {
@@ -316,7 +324,7 @@ footer {
   border-radius: 14px;
 }
 .carts-detail img {
-  height: 50px;
+  width: 70px;
 }
 .carts-detail h3 {
   color: #f6f6f6;
@@ -328,6 +336,10 @@ footer {
   padding-right: 10px;
   overflow-y: scroll;
   z-index: 999;
+}
+.carts-inner .empty-carts {
+  text-align: center;
+  line-height: 291px;
 }
 .carts-inner .carts-item {
   display: flex;
@@ -358,9 +370,16 @@ footer {
   width: 70px;
   object-fit: contain;
 }
-.carts-inner .carts-item .detail small,
-.table-style tr td.action small {
+.carts-inner .carts-item .action {
+  display: flex;
+}
+.carts-inner .carts-item .detail .qty,
+.table-style tr td.action .qty {
+  background-color: transparent;
+  width: 16px;
+  text-align: center;
   margin: 0 10px;
+  color: var(--light);
   font-weight: 680;
 }
 .min,
@@ -371,6 +390,10 @@ footer {
   box-shadow: 2px 5px 12px rgba(38, 43, 47, 0.4);
   font-size: 15px;
   font-weight: 600;
+}
+.min:hover,
+.plus:hover {
+  cursor: pointer;
 }
 .remove {
   color: #f5f5f7;
@@ -395,40 +418,18 @@ footer {
   color: #b7b7b7;
   font-size: 0.9em;
 }
-.order-detail h3 {
-  margin-top: 6px;
+.order-detail#total {
+  margin-top: 13px;
 }
-.order-submit .order-btn {
-  margin: 0 21px;
-  border-radius: 4px;
+.order-submit .save,
+.order-submit .reset,
+.order-submit .order {
+  margin: 0 5px;
   font-size: 1.1em;
   cursor: pointer;
 }
-.order-submit .order-btn.reset {
-  background-color: transparent;
-  border: 2px solid var(--yellow);
-  border-radius: 6px;
-  padding: 8px 20px;
-  color: var(--yellow);
-}
-.order-submit .order-btn.order,
-.konfirmasi-bayar-page .bayar {
-  background-color: var(--yellow);
-  border: 2px solid var(--yellow);
-  border-radius: 6px;
-  padding: 8px 20px;
-  color: var(--slate);
-}
-
-#total h3:last-child {
-  /* margin: 0; */
-  color: #dfa147 !important;
-  font-weight: bold;
-}
 
 /* Konfimasi Bayar Page */
-
-/* Detail Pesanan Page */
 .konfirmasi-bayar-page {
   padding: 4rem 5rem;
 }
@@ -459,7 +460,8 @@ footer {
 }
 .konfirmasi-bayar-page .bayar {
   color: var(--dark);
-  font-weight: 800;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 /* Edit Profile */

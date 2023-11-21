@@ -14,21 +14,21 @@ window.onscroll = function () {
 
 /**** Count Order Button Event ****/
 // Button Plus
-const btnPlusOrder = (event) => {
-  const countText = event.target.previousElementSibling;
-  let count = event.target.previousElementSibling.firstChild.data;
-  count = parseInt(count) + 1;
-  countText.innerHTML = count;
+const btnPlusOrder = (e) => {
+  let qty = e.value;
+  let sisa_stok = e.parentElement.lastElementChild;
+  const stok = e.dataset.stok;
+  qty++;
+  if (qty < stok && qty <= 10) e.value = qty;
+  if (sisa_stok) sisa_stok.value = stok - qty;
 };
 
 // Button Minus
-const btnMinusOrder = (event) => {
-  const countText = event.target.nextElementSibling;
-  let count = event.target.nextElementSibling.firstChild.data;
-  count = parseInt(count);
-
-  if (count > 1) {
-    count = count - 1;
-  }
-  countText.innerHTML = count;
+const btnMinusOrder = (e) => {
+  let qty = e.value;
+  let sisa_stok = e.parentElement.lastElementChild;
+  const stok = e.dataset.stok;
+  qty--;
+  if (qty >= 1) e.value = qty;
+  if (sisa_stok) sisa_stok.value = stok - qty;
 };
