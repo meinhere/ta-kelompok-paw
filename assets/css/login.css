@@ -42,3 +42,9 @@
   color: var(--dark);
   text-decoration: underline;
 }
+
+.errorlogin{
+  color: var(--red);
+  font-weight: bold;
+  padding: 3px;
+}

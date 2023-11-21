@@ -8,7 +8,7 @@ $page = "edprof";
         <img src="<?= BASEURL; ?>/assets/img/profil.png" alt="Logo">
     </div>
     <a href="index.php">Beranda</a>
-    <a href="editprofil.php">Profile</a>
+    <a href="edit_profil.php">Profile</a>
     <a class="logout" href="#">Logout</a>
 </div>
 <div class="content">
