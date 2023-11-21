@@ -1,4 +1,4 @@
-<?php 
+<?php
 $title = "Menu | JapanFoods";
 $page = "menu";
 ?>
@@ -23,6 +23,15 @@ $page = "menu";
         <p>Menyediakan semua jenis makanan jepang</p>
       </div>
       <div class="menu">
+        <div class="menu-card">
+          <img src="<?= BASEURL; ?>/assets/img/burger.png" alt="Gambar" />
+          <h3>15000</h3>
+          <div class="desc-item">
+            <h4>Shoyu Ramen</h4>
+            <p>Stok : 12</p>
+          </div>
+          <button class="menu-btn">+</button>
+        </div>
         <div class="menu-card">
           <img src="<?= BASEURL; ?>/assets/img/burger.png" alt="Gambar" />
           <h3>15000</h3>
