@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 define("HOST", "localhost");
 define("DBNAME", "store");

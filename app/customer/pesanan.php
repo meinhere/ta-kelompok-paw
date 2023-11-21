@@ -1,8 +1,8 @@
-<?php 
+<?php
 $title = "Daftar Pesanan | JapanFoods";
 $page = "dafpes";
 ?>
-<?php include "templates/header.php" ?>  
+<?php include "templates/header.php" ?>
 <?php include "templates/navbar.php" ?>
 <div class="content">
     <div class="pesanan-page">
@@ -15,62 +15,94 @@ $page = "dafpes";
                     <th>Kode</th>
                     <th>Tanggal Pesan</th>
                     <th>Total</th>
+                    <th>Status</th>
                     <th>Detail</th>
                 </tr>
                 <tr>
                     <td>001</td>
                     <td>19-01-2023</td>
                     <td>Rp. <span>1.000.000</span></td>
+                    <td><span>Belum Dibayar</span></td>
                     <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
                 </tr>
                 <tr>
                     <td>002</td>
                     <td>23-01-2023</td>
                     <td>Rp. <span>100.000</span></td>
+                    <td><span>Belum Dibayar</span></td>
                     <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
                 </tr>
                 <tr>
-                    <td>003</td>
-                    <td>28-01-2023</td>
-                    <td>Rp. <span>500.000</span></td>
+                    <td>002</td>
+                    <td>23-01-2023</td>
+                    <td>Rp. <span>100.000</span></td>
+                    <td><span>Sudah Dibayar</span></td>
                     <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
                 </tr>
                 <tr>
-                    <td>003</td>
-                    <td>28-01-2023</td>
-                    <td>Rp. <span>500.000</span></td>
+                    <td>002</td>
+                    <td>23-01-2023</td>
+                    <td>Rp. <span>100.000</span></td>
+                    <td><span>Sudah Dibayar</span></td>
                     <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
                 </tr>
                 <tr>
-                    <td>003</td>
-                    <td>28-01-2023</td>
-                    <td>Rp. <span>500.000</span></td>
+                    <td>002</td>
+                    <td>23-01-2023</td>
+                    <td>Rp. <span>100.000</span></td>
+                    <td><span>Sudah Dibayar</span></td>
                     <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
                 </tr>
                 <tr>
-                    <td>003</td>
-                    <td>28-01-2023</td>
-                    <td>Rp. <span>500.000</span></td>
+                    <td>002</td>
+                    <td>23-01-2023</td>
+                    <td>Rp. <span>100.000</span></td>
+                    <td><span>Sudah Dibayar</span></td>
                     <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
                 </tr>
                 <tr>
-                    <td>003</td>
-                    <td>28-01-2023</td>
-                    <td>Rp. <span>500.000</span></td>
+                    <td>002</td>
+                    <td>23-01-2023</td>
+                    <td>Rp. <span>100.000</span></td>
+                    <td><span>Sudah Dibayar</span></td>
                     <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
                 </tr>
                 <tr>
-                    <td>003</td>
-                    <td>28-01-2023</td>
-                    <td>Rp. <span>500.000</span></td>
+                    <td>002</td>
+                    <td>23-01-2023</td>
+                    <td>Rp. <span>100.000</span></td>
+                    <td><span>Sudah Dibayar</span></td>
                     <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
                 </tr>
                 <tr>
-                    <td>003</td>
-                    <td>28-01-2023</td>
-                    <td>Rp. <span>500.000</span></td>
+                    <td>002</td>
+                    <td>23-01-2023</td>
+                    <td>Rp. <span>100.000</span></td>
+                    <td><span>Sudah Dibayar</span></td>
                     <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
                 </tr>
+                <tr>
+                    <td>002</td>
+                    <td>23-01-2023</td>
+                    <td>Rp. <span>100.000</span></td>
+                    <td><span>Sudah Dibayar</span></td>
+                    <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>23-01-2023</td>
+                    <td>Rp. <span>100.000</span></td>
+                    <td><span>Sudah Dibayar</span></td>
+                    <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>23-01-2023</td>
+                    <td>Rp. <span>100.000</span></td>
+                    <td><span>Sudah Dibayar</span></td>
+                    <td><a href="detail_pesanan.php"><button class="btn btn-yellow">Detail Pesanan</button></a></td>
+                </tr>
+
             </table>
         </div>
     </div>
