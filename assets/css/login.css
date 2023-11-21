@@ -1,46 +1,94 @@
 .content.middle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .login,
 .register {
-  width: 30rem;
-  margin: 0 auto;
-  background-color: var(--grey);
-  border-radius: 1rem;
-  color: #fdfdfd;
-  padding: 20px;
-  text-align: center;
+    width: 30rem;
+    margin: 0 auto;
+    background-color: var(--slate);
+    border-radius: 1rem;
+    color: #fdfdfd;
+    padding: 20px;
+    text-align: center;
 }
 .login form,
 .register form {
-  border-top: 1px solid var(--dark);
-  padding-top: 1.2rem;
-  margin-top: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    border-top: 1px solid var(--dark);
+    padding-top: 1.2rem;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .login label,
 .register label {
-  margin: 8px 0;
+    margin: 8px 0;
 }
 .login input,
 .register input {
-  width: 95%;
-  padding: 8px;
-  margin-bottom: 16px;
-  font-size: medium;
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 16px;
+    font-size: medium;
 }
 .login p,
 .register p {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 .login p a,
 .register p a {
-  color: var(--dark);
-  text-decoration: underline;
+    color: var(--light);
+    text-decoration: underline;
+}
+
+.register button {
+    margin-top: 1rem;
+}
+
+.input-group {
+    display: flex;
+    width: 95%;
+}
+
+.input-group-text {
+    background-color: #eee;
+    color: var(--grey);
+    font-weight: 700;
+    padding: 5px 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    height: 35px;
+}
+
+select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.errForm {
+    font-weight: bold;
+    color: red;
+}
+
+/* Gaya khusus untuk elemen <select> dengan id "jenis_kelamin" */
+#jenis_kelamin {
+    width: 150px; /* Lebar dropdown */
+}
+
+@media only screen and (max-width: 600px) {
+    .login,
+    .register {
+        width: 100%;
+    }
+
+    .login input,
+    .register input {
+        width: 100%;
+    }
 }
 
 .errorlogin{
