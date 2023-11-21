@@ -1,6 +1,10 @@
 <?php
 $title = "Menu | JapanFoods";
 $page = "menu";
+
+session_start();
+
+var_dump($_SESSION);
 ?>
 <?php include "templates/header.php" ?>
 <nav class="side-nav">
