@@ -1,4 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Source+Code+Pro:wght@400;600&display=swap");
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Quicksand"),
+    url(../font/quicksand/Quicksand-VariableFont_wght.ttf);
+}
+
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400, 600;
+  src: local("Source Code Pro"),
+    url(../font/source-code-pro/SourceCodePro-VariableFont_wght.ttf);
+}
 
 :root {
   --dark: #17181c;
@@ -6,6 +20,8 @@
   --slate: #2c2f34;
   --red: #c93646;
   --yellow: #dfa147;
+  --green: #198754;
+  --blue: #0d6efd;
   --light: #a2a3a5;
   --grey: #61677a;
 }
@@ -68,4 +84,21 @@ body {
   background-color: transparent;
   border: 2px solid var(--yellow);
   color: var(--yellow);
+}
+.btn-green {
+  background-color: var(--green);
+  border: 2px solid var(--green);
+  color: #f6f6f6;
+}
+.btn-blue {
+  background-color: var(--blue);
+  border: 2px solid var(--blue);
+  color: #f6f6f6;
+}
+
+/* Media Print */
+@media print {
+  nav {
+    display: none;
+  }
 }

@@ -23,6 +23,7 @@
     z-index: 2; /* Mengatur z-index agar elemen th tetap di atas elemen lain */
 }
 .table-style tr td {
+<<<<<<< HEAD
     font-size: 1rem;
     padding: 1rem 0.7rem;
     border-bottom: 1px solid rgb(87, 85, 85);
@@ -34,6 +35,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+=======
+  font-size: 1rem;
+  padding: 0.4rem 0.7rem;
+  border-bottom: 1px solid rgb(87, 85, 85);
+}
+.table-style .empty-orders {
+  padding: 3rem 0;
+>>>>>>> menu
 }
 
 /* Hero Section */
@@ -69,6 +78,7 @@
     color: white;
 }
 .hero .content .title {
+<<<<<<< HEAD
     text-transedit-form: uppercase;
     font-weight: 700;
     font-size: 1.1rem;
@@ -76,6 +86,14 @@
 .hero .content h1 {
     font-size: 4.7rem;
     font-family: "Catchy Mager";
+=======
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.hero .content h1 {
+  font-size: 4.7rem;
+  font-family: "Source Code Pro";
+>>>>>>> menu
 }
 .hero .content p {
     font-size: 1rem;
@@ -177,12 +195,27 @@ footer {
     color: #fdfdfd;
     border-radius: 0.3rem;
 }
+<<<<<<< HEAD
 .detail-pesanan-page .report a {
     padding: 5px 10px;
     margin-right: 0.7rem;
     background-color: var(--yellow);
     color: var(--dark);
     border-radius: 0.3rem;
+=======
+.detail-pesanan-page .report a,
+.detail-pesanan-page .report button {
+  padding: 5px 10px;
+  margin-right: 0.7rem;
+  background-color: var(--yellow);
+  font-size: 1rem;
+  color: var(--dark);
+  font-family: "Quicksand";
+  border-radius: 0.3rem;
+>>>>>>> menu
+}
+.detail-pesanan-page .report button:hover {
+  cursor: pointer;
 }
 
 /* Menu Page */
@@ -232,7 +265,15 @@ footer {
     margin-top: 5%;
 }
 .menu-list {
+<<<<<<< HEAD
     padding-left: 3.5rem;
+=======
+  padding-left: 3.5rem;
+  width: 70%;
+}
+.carts {
+  width: 30%;
+>>>>>>> menu
 }
 .main-menu .menu-list .description {
     color: var(--light);
@@ -302,13 +343,24 @@ footer {
     cursor: pointer;
     box-shadow: 1px 5px 12px rgba(38, 43, 47, 0.8);
 }
+.menu-card .menu-btn.check {
+  background-color: var(--green);
+  color: var(--yellow);
+  cursor: default;
+}
 
 /* Carts */
 .carts {
+<<<<<<< HEAD
     width: 40%;
     color: var(--light);
     text-transedit-form: capitalize;
     padding-right: 1.5rem;
+=======
+  width: 40%;
+  color: var(--light);
+  padding-right: 1.5rem;
+>>>>>>> menu
 }
 .carts-detail {
     padding: 18px;
@@ -316,7 +368,11 @@ footer {
     border-radius: 14px;
 }
 .carts-detail img {
+<<<<<<< HEAD
     height: 50px;
+=======
+  width: 70px;
+>>>>>>> menu
 }
 .carts-detail h3 {
     color: #f6f6f6;
@@ -328,6 +384,10 @@ footer {
     padding-right: 10px;
     overflow-y: scroll;
     z-index: 999;
+}
+.carts-inner .empty-carts {
+  text-align: center;
+  line-height: 291px;
 }
 .carts-inner .carts-item {
     display: flex;
@@ -358,10 +418,24 @@ footer {
     width: 70px;
     object-fit: contain;
 }
+<<<<<<< HEAD
 .carts-inner .carts-item .detail small,
 .table-style tr td.action small {
     margin: 0 10px;
     font-weight: 680;
+=======
+.carts-inner .carts-item .action {
+  display: flex;
+}
+.carts-inner .carts-item .detail .qty,
+.table-style tr td.action .qty {
+  background-color: transparent;
+  width: 16px;
+  text-align: center;
+  margin: 0 10px;
+  color: var(--light);
+  font-weight: 680;
+>>>>>>> menu
 }
 .min,
 .plus {
@@ -371,6 +445,10 @@ footer {
     box-shadow: 2px 5px 12px rgba(38, 43, 47, 0.4);
     font-size: 15px;
     font-weight: 600;
+}
+.min:hover,
+.plus:hover {
+  cursor: pointer;
 }
 .remove {
     color: #f5f5f7;
@@ -395,6 +473,7 @@ footer {
     color: #b7b7b7;
     font-size: 0.9em;
 }
+<<<<<<< HEAD
 .order-detail h3 {
     margin-top: 6px;
 }
@@ -425,10 +504,20 @@ footer {
     color: #dfa147 !important;
     font-weight: bold;
 }
+=======
+.order-detail#total {
+  margin-top: 13px;
+}
+.order-submit .save,
+.order-submit .reset,
+.order-submit .order {
+  margin: 0 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+>>>>>>> menu
 
 /* Konfimasi Bayar Page */
-
-/* Detail Pesanan Page */
 .konfirmasi-bayar-page {
     padding: 4rem 5rem;
 }
@@ -458,8 +547,14 @@ footer {
     border-radius: 0.3rem;
 }
 .konfirmasi-bayar-page .bayar {
+<<<<<<< HEAD
     color: var(--dark);
     font-weight: 800;
+=======
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 1rem;
+>>>>>>> menu
 }
 
 /* Edit Profile */
