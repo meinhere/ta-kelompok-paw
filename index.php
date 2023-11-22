@@ -13,7 +13,7 @@ $page = "home";
     <div class="hero">
       <div class="content">
         <span class="title"> - Selamat Datang - </span>
-        <h1>Kingyo restoran</h1>
+        <h1>JapanFoods</h1>
         <p>Menyediakan makan-makan khas jepang</p>
       </div>
     </div>
@@ -76,10 +76,10 @@ $page = "home";
     <h1>Kategori Makanan</h1>
 
     <div class="category-menu">
-      <a href="" target="_blank">
+      <a href="menu.php?kat=ramen">
         <div class="category-menu-list">
           <div class="category-menu-list-head">
-            <img src="<?= BASEURL; ?>/assets/img/home/kategori1.jpg" alt="kategori 1" />
+            <img src="<?= BASEURL; ?>/assets/img/home/kategori1.jpg" alt="Kategori Ramen" />
           </div>
           <div class="category-menu-list-desc">
             <h3>Ramen</h3>
@@ -87,10 +87,10 @@ $page = "home";
         </div>
       </a>
 
-      <a href="" target="_blank">
+      <a href="menu.php?kat=sushi">
         <div class="category-menu-list">
           <div class="category-menu-list-head">
-            <img src="<?= BASEURL; ?>/assets/img/home/kategori2.jpg" alt="kategori 2" />
+            <img src="<?= BASEURL; ?>/assets/img/home/kategori2.jpg" alt="Kategori Sushi" />
           </div>
           <div class="category-menu-list-desc">
             <h3>Sushi</h3>
@@ -98,10 +98,10 @@ $page = "home";
         </div>
       </a>
 
-      <a href="" target="_blank">
+      <a href="menu.php?kat=onigiri">
         <div class="category-menu-list">
           <div class="category-menu-list-head">
-            <img src="<?= BASEURL; ?>/assets/img/home/kategori3.jpg" alt="kategori 3" />
+            <img src="<?= BASEURL; ?>/assets/img/home/kategori3.jpg" alt="Kategori Onigiri" />
           </div>
           <div class="category-menu-list-desc">
             <h3>Onigiri</h3>
@@ -109,10 +109,10 @@ $page = "home";
         </div>
       </a>
 
-      <a href="" target="_blank">
+      <a href="menu.php?kat=Udon">
         <div class="category-menu-list">
           <div class="category-menu-list-head">
-            <img src="<?= BASEURL; ?>/assets/img/home/kategori4.jpg" alt="kategori 4" />
+            <img src="<?= BASEURL; ?>/assets/img/home/kategori4.jpg" alt="Kategori Udon" />
           </div>
           <div class="category-menu-list-desc">
             <h3>Udon</h3>
@@ -120,10 +120,10 @@ $page = "home";
         </div>
       </a>
 
-      <a href="" target="_blank">
+      <a href="menu.php?kat=Sashimi">
         <div class="category-menu-list">
           <div class="category-menu-list-head">
-            <img src="<?= BASEURL; ?>/assets/img/home/kategori5.jpg" alt="kategori 5" />
+            <img src="<?= BASEURL; ?>/assets/img/home/kategori5.jpg" alt="Kategori Sashimi" />
           </div>
           <div class="category-menu-list-desc">
             <h3>Sashimi</h3>

@@ -1,5 +1,6 @@
-<?php require_once "../base.php" ?>
+<?php include "config/url.php" ?>
 <?php 
+date_default_timezone_set("Asia/Jakarta");
 // session_start();
 // if(!isset($_SESSION['login']) && $_SESSION['login'] != "customer") {
 //     header("Location: " . BASEURL . "/app/login.php");
@@ -12,10 +13,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= BASEURL;?>/assets/css/base.css">
-    <link rel="stylesheet" href="<?= BASEURL;?>/assets/css/customer/navbar.css">
-    <link rel="stylesheet" href="<?= BASEURL;?>/assets/css/customer/styles.css">
+
+    <link rel="stylesheet" href="<?= BASEASSET;?>/css/base.css">
+    <link rel="stylesheet" href="<?= BASEASSET;?>/css/login.css">
+    <link rel="stylesheet" href="<?= BASEASSET;?>/css/customer/navbar.css">
+    <link rel="stylesheet" href="<?= BASEASSET;?>/css/customer/styles.css">
+    
     <title><?= $title; ?></title>
 </head>
 
