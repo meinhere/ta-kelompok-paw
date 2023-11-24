@@ -1,8 +1,8 @@
 <?php 
 $title = "Beranda | JapanFoods";
 $page = "home";
+include "templates/header.php";
 ?>
-<?php include "templates/header.php" ?>
 <div class="home-page">
   <!-- Header Start -->
   <header id="home">
@@ -109,7 +109,7 @@ $page = "home";
         </div>
       </a>
 
-      <a href="menu.php?kat=Udon">
+      <a href="menu.php?kat=udon">
         <div class="category-menu-list">
           <div class="category-menu-list-head">
             <img src="<?= BASEURL; ?>/assets/img/home/kategori4.jpg" alt="Kategori Udon" />
@@ -120,7 +120,7 @@ $page = "home";
         </div>
       </a>
 
-      <a href="menu.php?kat=Sashimi">
+      <a href="menu.php?kat=sashimi">
         <div class="category-menu-list">
           <div class="category-menu-list-head">
             <img src="<?= BASEURL; ?>/assets/img/home/kategori5.jpg" alt="Kategori Sashimi" />

@@ -1,24 +1,22 @@
-<?php
+<?php 
 $title = "Menu | JapanFoods";
 $page = "menu";
+include "templates/header.php";
 
-include "data/menu.php";
-$kode_pelanggan = 1;
-
-if (isset($_POST['tambah'])) insertCarts($kode_pelanggan, $_POST['kode_makanan']);
+require_once "data/menu.php";
+if (isset($_POST['tambah'])) insertCarts($_POST['kode_makanan']);
 if (isset($_GET['del'])) deleteCartsByKode($_GET['del']);
-if (isset($_POST['reset'])) deleteAllCarts($kode_pelanggan);
-if (isset($_POST['save'])) editCarts($kode_pelanggan, $_POST);
-if (isset($_POST['order'])) insertOrders($kode_pelanggan, $_POST);
+if (isset($_POST['reset'])) deleteAllCarts();
+if (isset($_POST['save'])) editCarts($_POST);
+if (isset($_POST['order'])) insertOrders($_POST);
 
 $makanan = isset($_GET['kat']) ? getAllMenuByCategory($_GET['kat']) : getAllMenu();
-$keranjang = getAllCarts($kode_pelanggan);
+$keranjang = getAllCarts();
 $kolom = array_column($keranjang, "KODE_MAKANAN");
 $subTotal = 0;
 $banyakBarang = 0;
 ?>
-<?php include "templates/header.php" ?>
-<nav class="side-nav">=
+<nav class="side-nav">
   <ul class="nav-links">
     <li class="<?= isset($_GET['kat']) ? "" : "active"; ?>"><a href="menu.php">All</a></li>
     <li class="<?= isset($_GET['kat']) && $_GET['kat'] == "ramen" ? "active" : ""; ?>"><a href="menu.php?kat=ramen">Ramen</a></li>

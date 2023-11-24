@@ -1,5 +1,5 @@
 <?php 
-include "connection.php";
+require_once BASEPATH . "/data/connection.php";
 
 function getAllOrdersDetail($kode_transaksi) {
   try{
@@ -32,7 +32,8 @@ function deleteOrdersDetailByKode($kode_transaksi, $kode_makanan) {
 
 function getAllOrders() {
   try{
-		$statement = DB->query("SELECT * FROM transaksi");
+		$statement = DB->prepare("SELECT * FROM transaksi WHERE ID_PELANGGAN = :id_pelanggan");
+		$statement->bindValue(':id_pelanggan', $_SESSION['id_pelanggan']);
 		$statement->execute();
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}

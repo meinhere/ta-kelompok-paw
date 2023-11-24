@@ -1,16 +1,18 @@
 <?php 
 $title = "Konfirmasi Pembayaran | JapanFoods";
 $page = "konfpem";
+include "templates/header.php";
 
-include "data/transaksi.php";
+require_once "data/transaksi.php";
+require_once "data/pembayaran.php";
 $id = $_GET['id'];
 if (isset($_POST['pay'])) editOrders($id, $_POST);
 
 $ordersDetail = getAllOrdersDetail($id);
+$metode = getAllPayment();
 $no = 1;
 $subTotal = 0;
 ?>
-<?php include "templates/header.php" ?>
 <?php include "templates/navbar.php" ?>
 <div class="content">
   <div class="konfirmasi-bayar-page">
@@ -24,11 +26,16 @@ $subTotal = 0;
           <div>
             <h3>Pilih metode Pembayaran</h3>
             <select name="metode_bayar" id="metode_bayar">
-              <option value="Cash">Cash</option>
-              <option value="Transfer BRI">Transfer BRI</option>
-              <option value="Transfer BCA">Transfer BCA</option>
+              <?php if(empty($metode)): ?>
+                <option value="0">--- Kosong ---</option>
+              <?php else: ?>
+                <?php foreach ($metode as $row): ?>
+                <option value="<?= $row['NAMA_METODE']; ?>"><?= $row['NAMA_METODE']; ?></option>
+                <?php endforeach; ?>
+              <?php endif; ?>
             </select>
-            <button class="btn btn-yellow bayar" type="submit" name="pay">Bayar</button>
+
+            <button class="btn btn-yellow bayar" type="<?= empty($metode) ? "button" : "submit"; ?>" name="pay">Bayar</button>
           </div>
         </div>
       </div>
