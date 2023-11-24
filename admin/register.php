@@ -1,20 +1,20 @@
 <?php
-$title = "Register | JapanFoods";
+$title = "Register Karyawan | JapanFoods";
 $page = "regist";
 
-require_once "config/url.php";
-require_once "libs/validate.php";
-require_once "data/pelanggan.php";
+require_once "../config/url.php";
+require_once BASEPATH . "/libs/validate.php";
+require_once BASEPATH . "/data/karyawan.php";
 
 $errors = array();
 if (isset($_POST["submit"])) {
-   validateRegister($errors, $_POST);
+   validateRegisterEmployee($errors, $_POST);
 
-    if (empty($errors)) {
-      $success = insertCustomer($_POST);
-    } else {
-      $attention = "Perbaiki inputan anda sesuai dengan pesan!";
-    }
+  if (empty($errors)) {
+    $success = insertEmployee($_POST);
+  } else {
+    $attention = "Perbaiki inputan anda sesuai dengan pesan!";
+  }
 }
 ?>
 
@@ -33,12 +33,12 @@ if (isset($_POST["submit"])) {
 <body>
   <div class="content middle">
       <div class="register">
-          <h2>Register</h2>
+          <h2>Register Karyawan</h2>
           <form action="" method="post">
             <?php 
                 if (isset($success) && $success) {
                     echo "<div class='form-success'>Data Berhasil Ditambah</div>";
-                    header("Refresh: 1; url=login.php");
+                    header("Refresh: 1; url=" . BASEURL .  "/login.php");
                 }
             ?>
             <label for="nama">Nama</label>
@@ -73,22 +73,13 @@ if (isset($_POST["submit"])) {
             <span class="errForm">
                 <?= ($errors['nohpErr'] ?? ''); ?>
             </span>
-            <label for="alamat">Alamat</label>
-            <input type="text" name="alamat" id="alamat"
-                value="<?= $_POST['alamat'] ?? "" ?>">
-            <span class="errForm">
-                <?= ($errors['alamatErr'] ?? ''); ?>
-            </span>
-            <label for="jenis_kelamin">Jenis-Kelamin</label>
-            <select name="jenis_kelamin" id="jenis_kelamin">
-                <option value="L">Laki-laki</option>
-                <option value="P">Perempuan</option>
+            <label for="role">Daftar Sebagai</label>
+            <select name="role" id="role">
+                <option value="1">Admin</option>
+                <option value="2">Manager</option>
             </select>
-            <span class="errForm">
-                <?php echo $attention ?? '' ?>
-            </span>
             <button type="submit" class="btn btn-yellow" name="submit">Daftar</button>
-            <p>Sudah punya akun? <span><a href="login.php">Login</a></span></p>
+            <p>Sudah punya akun? <span><a href="../login.php">Login</a></span></p>
           </form>
       </div>
   </div>

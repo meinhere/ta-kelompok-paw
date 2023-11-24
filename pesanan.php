@@ -1,11 +1,11 @@
 <?php 
 $title = "Daftar Pesanan | JapanFoods";
 $page = "dafpes";
+include "templates/header.php";
 
-include "data/transaksi.php";
+require_once "data/transaksi.php";
 $orders = getAllOrders();
 ?>
-<?php include "templates/header.php" ?>  
 <?php include "templates/navbar.php" ?>
 <div class="content">
     <div class="pesanan-page">

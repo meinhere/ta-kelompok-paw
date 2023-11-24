@@ -1,18 +1,18 @@
 <?php 
 $title = "Detail Pesanan | JapanFoods";
 $page = "detpes";
+include "templates/header.php";
 
-include "data/transaksi.php";
+require_once "data/transaksi.php";
 $id = $_GET['id'];
 $ordersDetail = getAllOrdersDetail($id);
 $no = 1;
 ?>
-<?php include "templates/header.php" ?> 
 <?php include "templates/navbar.php" ?>
 <div class="content">
     <div class="detail-pesanan-page">
         <div class="header">
-            <h1>Detail Pesanan - <span>001</span></h1>
+            <h1>Detail Pesanan - <?= $id; ?></h1>
             <a class="back" href="pesanan.php"><-- Kembali</a>
             <div class="report">
                 <button onclick="window.print()" type="submit">PDF</button>
