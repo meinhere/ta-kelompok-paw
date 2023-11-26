@@ -3,10 +3,10 @@ require_once BASEPATH . "/data/connection.php";
 
 function getEmployeeById() {
     try {
-		$statement = DB->prepare("SELECT * FROM pelanggan WHERE ID_PELANGGAN = :id_pelanggan");
-        $statement->bindValue(':id_pelanggan', $_SESSION['id_pelanggan']);
+		$statement = DB->prepare("SELECT * FROM karyawan WHERE ID_KARYAWAN = :id_karyawan");
+        $statement->bindValue(':id_karyawan', $_SESSION['id_karyawan']);
 		$statement->execute();
-		return $statement->fetchAll(PDO::FETCH_ASSOC);
+		return $statement->fetch(PDO::FETCH_ASSOC);
 	}
     catch(PDOException $err){
         echo $err->getMessage();
@@ -48,34 +48,34 @@ function insertEmployee($data) {
     }
 }
 
-function editCustomer($data) {
-    $customer = getCustomerById();
+// function editCustomer($data) {
+//     $customer = getCustomerById();
 
-    $name = htmlspecialchars($data['nama']);
-    $password = !empty($data['password']) ? htmlspecialchars(hash('sha256', $data['password'])) : $customer[0]['PASSWORD_PELANGGAN'];
-    $nohp = htmlspecialchars($data['nohp']);
-    $alamat = htmlspecialchars($data['alamat']);
-    $jeniskelamin = htmlspecialchars($data['jenis_kelamin']);
+//     $name = htmlspecialchars($data['nama']);
+//     $password = !empty($data['password']) ? htmlspecialchars(hash('sha256', $data['password'])) : $customer[0]['PASSWORD_PELANGGAN'];
+//     $nohp = htmlspecialchars($data['nohp']);
+//     $alamat = htmlspecialchars($data['alamat']);
+//     $jeniskelamin = htmlspecialchars($data['jenis_kelamin']);
 
-    try {
-        $statement = DB->prepare("UPDATE pelanggan SET 
-            PASSWORD_PELANGGAN = :password,
-            NAMA_PELANGGAN = :name,
-            NO_TELP_PELANGGAN = :nohp,
-            ALAMAT_PELANGGAN = :alamat,
-            JENIS_KELAMIN = :jeniskelamin WHERE ID_PELANGGAN = :id_pelanggan");
+//     try {
+//         $statement = DB->prepare("UPDATE pelanggan SET 
+//             PASSWORD_PELANGGAN = :password,
+//             NAMA_PELANGGAN = :name,
+//             NO_TELP_PELANGGAN = :nohp,
+//             ALAMAT_PELANGGAN = :alamat,
+//             JENIS_KELAMIN = :jeniskelamin WHERE ID_PELANGGAN = :id_pelanggan");
 
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':password', $password);
-        $statement->bindValue(':nohp', $nohp);
-        $statement->bindValue(':alamat', $alamat);
-        $statement->bindValue(':jeniskelamin', $jeniskelamin);
-        $statement->bindValue(':id_pelanggan', $_SESSION['id_pelanggan']);
-        $statement->execute();
+//         $statement->bindValue(':name', $name);
+//         $statement->bindValue(':password', $password);
+//         $statement->bindValue(':nohp', $nohp);
+//         $statement->bindValue(':alamat', $alamat);
+//         $statement->bindValue(':jeniskelamin', $jeniskelamin);
+//         $statement->bindValue(':id_pelanggan', $_SESSION['id_pelanggan']);
+//         $statement->execute();
 
-        return true;
-    } catch (PDOException $err) {
-        echo $err->getMessage();
-        return false;
-    }
-}
+//         return true;
+//     } catch (PDOException $err) {
+//         echo $err->getMessage();
+//         return false;
+//     }
+// }

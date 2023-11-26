@@ -6,6 +6,16 @@ require_once "config/url.php";
 require_once "libs/validate.php";
 require_once "data/pelanggan.php";
 
+if (isset($_SESSION["login"])){
+    if ($_SESSION['login'] == 'pelanggan') {
+        header("Location: menu.php");
+        exit();
+    } else {
+        header("Location: admin/index.php");
+        exit();
+    }
+}
+
 $errors = array();
 if (isset($_POST["submit"])) {
    validateRegister($errors, $_POST);
@@ -34,7 +44,7 @@ if (isset($_POST["submit"])) {
   <div class="content middle">
       <div class="register">
           <h2>Register</h2>
-          <form action="" method="post">
+          <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
             <?php 
                 if (isset($success) && $success) {
                     echo "<div class='form-success'>Data Berhasil Ditambah</div>";
@@ -87,7 +97,7 @@ if (isset($_POST["submit"])) {
             <span class="errForm">
                 <?php echo $attention ?? '' ?>
             </span>
-            <button type="submit" class="btn btn-yellow" name="submit">Daftar</button>
+            <button type="submit" class="btn btn-yellow submit" name="submit">Daftar</button>
             <p>Sudah punya akun? <span><a href="login.php">Login</a></span></p>
           </form>
       </div>

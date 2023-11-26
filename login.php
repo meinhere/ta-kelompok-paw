@@ -41,7 +41,7 @@ if (isset($_POST["submit"])){
         <div class="content middle">
             <div class="login">
                 <h2>Login</h2>
-                <form action="login.php" method="post">
+                <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username" value="<?= $_POST["username"] ?? '' ?>" autofocus>
                     <span class="errorlogin"><?= $error["username"] ?? '' ?></span>
@@ -49,7 +49,7 @@ if (isset($_POST["submit"])){
                     <input type="password" name="password" id="password" value="<?= $_POST["password"] ?? '' ?>">
                     <span class="errorlogin"><?= $error["password"] ?? ''?></span>
                     <br>
-                    <a href="test.php"><input class="btn btn-yellow" type="submit" name="submit" value="Login"></input></a>
+                    <button class="btn btn-yellow submit" type="submit" name="submit">Login</button>
                     <p>Belum punya akun? <span><a href="register.php">Daftar Sekarang</a></span></p>
                 </form>
             </div>

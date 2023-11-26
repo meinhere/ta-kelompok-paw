@@ -1,6 +1,16 @@
 <?php 
 require_once BASEPATH . "/data/connection.php";
 
+function getAllCustomer() {
+    try {
+		$statement = DB->query("SELECT * FROM pelanggan");
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+    catch(PDOException $err){
+        echo $err->getMessage();
+    }
+}
 function getCustomerById() {
     try {
 		$statement = DB->prepare("SELECT * FROM pelanggan WHERE ID_PELANGGAN = :id_pelanggan");
@@ -56,7 +66,7 @@ function editCustomer($data) {
     $customer = getCustomerById();
 
     $name = htmlspecialchars($data['nama']);
-    $password = !empty($data['password']) ? htmlspecialchars(hash('sha256', $data['password'])) : $customer[0]['PASSWORD_PELANGGAN'];
+    $password = !empty($data['password']) ? htmlspecialchars(hash('sha256', $data['password'])) : $customer['PASSWORD_PELANGGAN'];
     $nohp = htmlspecialchars($data['nohp']);
     $alamat = htmlspecialchars($data['alamat']);
     $jeniskelamin = htmlspecialchars($data['jenis_kelamin']);
