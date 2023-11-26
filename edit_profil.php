@@ -23,7 +23,7 @@ if (isset($_POST["bri"])) {
 ?>
 <?php include "templates/navbar.php"; ?>
 <div class="form-edit">    
-    <form action="" method="post">
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
         <?php 
             if (isset($edit) && $edit) {
                 echo "<div class='form-success'>Data Berhasil Diubah</div>";
@@ -85,7 +85,7 @@ if (isset($_POST["bri"])) {
         <button type="submit" name="edit" class="btn btn-blue">Simpan Perubahan</button>
     </form>
 
-    <form action="" method="post">
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
         <h3>Tambahkan Metode Pembayaran</h3>
         <?php 
             if (isset($add) && $add) {

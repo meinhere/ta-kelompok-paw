@@ -16,7 +16,7 @@ $subTotal = 0;
 <?php include "templates/navbar.php" ?>
 <div class="content">
   <div class="konfirmasi-bayar-page">
-    <form action="" method="post">
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
       <div class="header">
         <h1>Konfirmasi Pembayaran - <?= $id; ?></h1>
         <div class="action">

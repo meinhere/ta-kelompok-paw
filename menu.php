@@ -44,7 +44,7 @@ $banyakBarang = 0;
             <h4><?= $row['NAMA_MAKANAN']; ?></h4>
             <p>Stok : <?= $row['STOK_PRODUK']; ?></p>
           </div>
-          <form action="" method="post">
+          <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
             <input type="hidden" name="kode_makanan" value="<?= $row['KODE_MAKANAN']; ?>">
 
             <?php if(!in_array($row['KODE_MAKANAN'], $kolom)) : ?>
@@ -60,7 +60,7 @@ $banyakBarang = 0;
     <div class="carts">
       <div class="carts-detail">
         <h3>Keranjang Belanja</h3>
-        <form action="" method="post">
+        <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
           <div class="carts-inner">
             <?php if(empty($keranjang)): ?>
               <h4 class="empty-carts">Keranjang Masih Kosong</h4>
