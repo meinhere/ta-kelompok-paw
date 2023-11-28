@@ -8,8 +8,9 @@
     ></span>
   </div>
 
+  <?php if ($_SESSION['login'] == "admin"): ?>
   <ul class="sidebar-list">
-    <li class="sidebar-list-item <?= ($page=="customer") ? "active" : ""; ?>">
+    <li class="sidebar-list-item <?= ($page=="home") ? "active" : ""; ?>">
       <a href="index.php">
         <span><i class="fa fa-address-book"></i></span>
         Customer
@@ -34,4 +35,32 @@
       </a>
     </li>
   </ul>
+  <?php else : ?>
+  <ul class="sidebar-list">
+    <li class="sidebar-list-item <?= ($page=="home") ? "active" : ""; ?>">
+      <a href="index.php">
+        <span><i class="fa fa-server"></i></span>
+        Transaksi
+      </a>
+    </li>
+    <li class="sidebar-list-item <?= ($page=="sb") ? "active" : ""; ?>">
+      <a href="rekap.php">
+        <span><i class="fa fa-money"></i></span>
+        Sudah Bayar
+      </a>
+    </li>
+    <li class="sidebar-list-item <?= ($page=="bb") ? "active" : ""; ?>">
+      <a href="rekap.php?tunda">
+        <span><i class="fa fa-clock-o"></i></span>
+        Belum Bayar
+      </a>
+    </li>
+    <li class="sidebar-list-item">
+      <a href="<?= BASEURL . "/logout.php"; ?>">
+        <span><i class="fa fa-sign-out"></i></span>
+        Logout
+      </a>
+    </li>
+  </ul>
+  <?php endif; ?>
 </aside>

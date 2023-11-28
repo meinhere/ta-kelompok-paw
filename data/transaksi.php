@@ -17,6 +17,24 @@ function getAllOrdersDetail($kode_transaksi) {
 		echo $err->getMessage();
 	}
 }
+function getAllOrdersDetailByLimit($kode_transaksi, $limit, $offset) {
+	try{
+		$statement = DB->prepare(
+      "SELECT NAMA_MAKANAN, td.HARGA_MAKANAN, td.KODE_MAKANAN, QTY, NAMA_KATEGORI, STOK_PRODUK 
+       FROM transaksi_detail td
+       INNER JOIN makanan ON makanan.KODE_MAKANAN = td.KODE_MAKANAN
+       INNER JOIN kategori ON kategori.KODE_KATEGORI = makanan.KODE_KATEGORI
+       WHERE KODE_TRANSAKSI = :kode_transaksi LIMIT :limit OFFSET :offset");
+		$statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+		$statement->bindParam(':offset', $offset, PDO::PARAM_INT);
+		$statement->bindValue(':kode_transaksi', $kode_transaksi);
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+	}
+}
 function deleteOrdersDetailByKode($kode_transaksi, $kode_makanan) {
 	try{
 		$statement = DB->prepare("DELETE FROM transaksi_detail WHERE KODE_MAKANAN = :kode_makanan AND KODE_TRANSAKSI = :kode_transaksi");
@@ -30,9 +48,22 @@ function deleteOrdersDetailByKode($kode_transaksi, $kode_makanan) {
 	}
 }
 
-function getAllOrders() {
+function getAllOrdersById() {
   try{
 		$statement = DB->prepare("SELECT * FROM transaksi WHERE ID_PELANGGAN = :id_pelanggan");
+		$statement->bindValue(':id_pelanggan', $_SESSION['id_pelanggan']);
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+	} 
+}
+function getAllOrdersByIdAndLimit($limit, $offset) {
+	try{
+		$statement = DB->prepare("SELECT * FROM transaksi WHERE ID_PELANGGAN = :id_pelanggan LIMIT :limit OFFSET :offset");
+		$statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+		$statement->bindParam(':offset', $offset, PDO::PARAM_INT);
 		$statement->bindValue(':id_pelanggan', $_SESSION['id_pelanggan']);
 		$statement->execute();
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -65,4 +96,60 @@ function editOrders($kode_transaksi, $data) {
 	catch(PDOException $err){
 		echo $err->getMessage();
   }
+}
+
+
+function getAllOrders() {
+	try{
+		$statement = DB->query("SELECT * FROM transaksi");
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+	} 	
+}
+function getAllOrdersByDate($status, $date_awal, $date_akhir) {
+	try{
+		$statement = DB->prepare("SELECT * FROM transaksi t 
+		INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
+		WHERE t.STATUS = :status AND t.TANGGAL_PESAN BETWEEN :date_awal AND :date_akhir ORDER BY t.TANGGAL_PESAN ASC");
+		$statement->bindValue(':status', $status);
+		$statement->bindValue(':date_awal', "$date_awal 00:00:01");
+		$statement->bindValue(':date_akhir', "$date_akhir 23:59:59");
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+	} 	
+}
+function getAllOrdersByDateAndLimit($status, $date_awal, $date_akhir, $limit, $offset) {
+	try{
+		$statement = DB->prepare("SELECT * FROM transaksi t 
+		INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
+		WHERE t.STATUS = :status AND t.TANGGAL_PESAN BETWEEN :date_awal AND :date_akhir ORDER BY t.TANGGAL_PESAN DESC LIMIT :limit OFFSET :offset");
+		$statement->bindValue(':status', $status);
+		$statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+		$statement->bindParam(':offset', $offset, PDO::PARAM_INT);
+		$statement->bindValue(':date_awal', "$date_awal 00:00:01");
+		$statement->bindValue(':date_akhir', "$date_akhir 23:59:59");
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+	} 	
+}
+function getSumTotalInOrders($status, $tanggal) {
+	try{
+		$statement = DB->prepare("SELECT SUM(TOTAL) TOTAL FROM transaksi WHERE TANGGAL_PESAN LIKE :tanggal AND STATUS = :status");
+		$statement->bindValue(':tanggal', "$tanggal%");
+		$statement->bindValue(':status', $status);
+		$statement->execute();
+		return $statement->fetch(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+	} 	
 }

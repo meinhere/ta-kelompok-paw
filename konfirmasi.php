@@ -16,7 +16,7 @@ $subTotal = 0;
 <?php include "templates/navbar.php" ?>
 <div class="content">
   <div class="konfirmasi-bayar-page">
-    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+    <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
       <div class="header">
         <h1>Konfirmasi Pembayaran - <?= $id; ?></h1>
         <div class="action">
@@ -44,7 +44,7 @@ $subTotal = 0;
           <tr>
             <th>No</th>
             <th>Nama Makanan</th>
-            <th>Edit Pesanan</th>
+            <th>Jumlah Pesanan</th>
             <th>Harga Makanan</th>
             <th>SubTotal</th>
           </tr>

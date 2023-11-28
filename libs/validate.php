@@ -7,14 +7,14 @@ function checkUsernamePelanggan($username) {
     $statement = DB->prepare("SELECT * FROM pelanggan WHERE USERNAME_PELANGGAN = :username");
     $statement->bindValue(':username', $username);
     $statement->execute();
-    return $statement->rowCount() > 0;
+    return $statement->rowCount() > 0 && preg_match("/^[a-z0-9_]+$/", $username);
 }
 // cek username karyawan
 function checkUsernameKaryawan($username) {
     $statement = DB->prepare("SELECT * FROM karyawan WHERE USERNAME_KARYAWAN = :username");
     $statement->bindValue(':username', $username);
     $statement->execute();
-    return $statement->rowCount() > 0;
+    return $statement->rowCount() > 0 && preg_match("/^[a-z0-9_]+$/", $username);
 }
 // cek password pelanggan
 function checkPasswordPelanggan($username, $password) {

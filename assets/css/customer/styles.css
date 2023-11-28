@@ -91,31 +91,27 @@
 }
 
 /* content */
+.restorant-content {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 80px;
+}
 .restorant .restorant-content .restorant-content-head img {
   width: 500px;
   height: 700px;
-  padding-top: 100px;
-  padding-left: 50px;
-  padding-bottom: 100px;
-}
-
-.restorant-content {
-  display: flex;
-}
-
-.restorant-content .description-content-desc {
-  padding: 100px 30px 50px 100px;
-  color: white;
 }
 .restorant-content .description-content-desc p {
   margin-bottom: 15px;
+  font-size: 1.1rem;
+  color: white;
 }
+
 .menu-selection h1 {
   text-align: center;
   color: white;
   padding-bottom: 50px;
 }
-
 .category-menu {
   display: flex;
   flex-wrap: wrap;
@@ -123,7 +119,6 @@
   gap: 4rem;
   padding-bottom: 100px;
 }
-
 .category-menu .category-menu-list:hover {
   box-shadow: 2px 2px 10px white;
 }
@@ -177,12 +172,16 @@ footer {
   color: #fdfdfd;
   border-radius: 0.3rem;
 }
+.detail-pesanan-page .report {
+  margin-top: 20px;
+}
 .detail-pesanan-page .report a,
 .detail-pesanan-page .report button {
   padding: 5px 10px;
   margin-right: 0.7rem;
   background-color: var(--yellow);
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 800;
   color: var(--dark);
   font-family: "Quicksand";
   border-radius: 0.3rem;
@@ -192,7 +191,10 @@ footer {
 }
 
 /* Menu Page */
-/* Side Nav */
+.menu-page {
+  display: flex;
+  height: 100vh;
+}
 .side-nav {
   width: 100px;
   height: 100%;
@@ -225,12 +227,12 @@ footer {
 }
 
 /* Content */
-.content {
+.menu-page .content {
   width: 100%;
   overflow: hidden;
   box-shadow: -8px 0px 15px rgba(0, 0, 0, 0.1);
 }
-.content .main-menu {
+.menu-page .content .main-menu {
   position: relative;
   display: flex;
   width: 100%;
@@ -238,14 +240,11 @@ footer {
 }
 .main-menu .menu-list,
 .main-menu .carts {
-  margin-top: 5%;
+  margin-top: 6%;
 }
 .menu-list {
   padding-left: 3.5rem;
   width: 70%;
-}
-.carts {
-  width: 30%;
 }
 .main-menu .menu-list .description {
   color: var(--light);
@@ -254,7 +253,7 @@ footer {
 }
 .main-menu .menu-list .menu {
   width: 100%;
-  max-height: 457px;
+  max-height: 465px;
   padding: 40px 0 0;
   display: flex;
   flex-wrap: wrap;
@@ -478,7 +477,7 @@ footer {
   display: flex;
   width: 100%;
   gap: 50px;
-  margin: 0 50px;
+  padding: 18vh 0;
   justify-content: center;
   align-items: center;
 }
@@ -527,25 +526,45 @@ footer {
 /* Responsiveness for Laptop */
 @media (max-width: 1360px) {
   html {
-    font-size: 80%;
+    font-size: 90%;
+  }
+  .restorant-content {
+    flex-wrap: wrap;
   }
 }
 
 /* Responsiveness for Tablets */
 @media screen and (max-width: 768px) {
   html {
-    font-size: 70%;
+    font-size: 80%;
   }
-  .container {
-    margin-left: 2rem;
-    margin-right: 2rem;
+  .menu-page .content {
+    overflow: auto;
   }
-  .search-bar input[type="text"] {
+  .menu-page .content .main-menu {
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  .menu-list {
+    padding: 0 2.5rem;
     width: 100%;
+  }
+  .main-menu .menu-list .menu {
+    justify-content: center;
+  }
+  .menu .menu-card {
+    width: 170px;
+  }
+  .carts {
+    width: 100%;
+    padding: 0 1.5rem 3rem;
   }
   .table-style {
     width: 100%;
     overflow-x: auto;
+  }
+  .form-edit {
+    flex-wrap: wrap;
   }
   .form-edit form {
     width: 80%;
@@ -556,10 +575,6 @@ footer {
 @media screen and (max-width: 480px) {
   html {
     font-size: 60%;
-  }
-  .container {
-    margin-right: 2rem;
-    margin-left: 1rem;
   }
 }
 
