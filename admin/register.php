@@ -6,6 +6,16 @@ require_once "../config/url.php";
 require_once BASEPATH . "/libs/validate.php";
 require_once BASEPATH . "/data/karyawan.php";
 
+if (isset($_SESSION["login"])){
+    if ($_SESSION['login'] == 'pelanggan') {
+        header("Location: menu.php");
+        exit();
+    } else {
+        header("Location: admin/index.php");
+        exit();
+    }
+}
+
 $errors = array();
 if (isset($_POST["submit"])) {
    validateRegisterEmployee($errors, $_POST);

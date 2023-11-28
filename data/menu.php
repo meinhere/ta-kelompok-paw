@@ -138,6 +138,7 @@ function insertCarts($kode_makanan) {
     $statement->bindValue(":kode_makanan", $kode_makanan);
     $statement->bindValue(":qty", 1);
 		$statement->execute();
+		header("Location: " . $_SERVER['HTTP_REFERER']);
 	}
 	catch(PDOException $err){
 		echo $err->getMessage();

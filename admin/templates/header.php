@@ -5,12 +5,18 @@ date_default_timezone_set("Asia/Jakarta");
 
 require_once BASEPATH . "/data/karyawan.php";
 
-$karyawan = getEmployeeById();
-if(!isset($_SESSION['login']) && $_SESSION['login'] == "pelanggan") {
-    header("Location: " . BASEURL . "/login.php");
+if (!isset($_SESSION['login']) || $_SESSION['login'] == "pelanggan") {
+  header("Location: " . BASEURL);
     exit();
+  }
+
+if ($_SESSION['login'] == 'admin' && $page == 'rekap') {
+  header("Location: " . BASEURL . "/admin");
+} else if($_SESSION['login'] == 'manager' && ($page == 'menu' || $page == 'sup' || $page == 'ks' || $page == 'km')) {
+  header("Location: " . BASEURL . "/admin");
 }
 
+$karyawan = getEmployeeById();
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,20 +1,3 @@
-// SIDEBAR TOGGLE
-let sidebarOpen = false;
-const sidebar = document.getElementById("sidebar");
-
-function openSidebar() {
-  if (!sidebarOpen) {
-    sidebar.classList.add("sidebar-responsive");
-    sidebarOpen = true;
-  }
-}
-
-function closeSidebar() {
-  if (sidebarOpen) {
-    sidebar.classList.remove("sidebar-responsive");
-    sidebarOpen = false;
-  }
-}
 // AREA CHART
 const areaChartOptions = {
   series: [
@@ -130,9 +113,3 @@ const areaChartOptions = {
     theme: "dark",
   },
 };
-
-const areaChart = new ApexCharts(
-  document.querySelector("#area-chart"),
-  areaChartOptions
-);
-areaChart.render();

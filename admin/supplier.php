@@ -58,3 +58,4 @@ $no = 1;
     </table>
   </div>
 </main>
+<?php include "templates/footer.php" ?>
