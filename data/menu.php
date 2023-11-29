@@ -1,6 +1,8 @@
 <?php
 require_once BASEPATH . "/data/connection.php";
 
+// ========== MENU MAKANAN ===========
+
 function getAllMenu() {
   try{
 		$statement = DB->query("SELECT * FROM makanan INNER JOIN kategori ON makanan.KODE_KATEGORI = kategori.KODE_KATEGORI INNER JOIN supplier ON makanan.ID_SUPPLIER = supplier.ID_SUPPLIER");
@@ -11,6 +13,20 @@ function getAllMenu() {
 		echo $err->getMessage();
 	}
 }
+
+function getAllMenuByLimit($limit, $offset) {
+  try{
+		$statement = DB->prepare("SELECT * FROM makanan INNER JOIN kategori ON makanan.KODE_KATEGORI = kategori.KODE_KATEGORI INNER JOIN supplier ON makanan.ID_SUPPLIER = supplier.ID_SUPPLIER LIMIT :limit OFFSET :offset");
+		$statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+		$statement->bindParam(':offset', $offset, PDO::PARAM_INT);
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+	}
+}
+
 function getAllMenuByCategory($kategori) {
   try{
 		$statement = DB->prepare("SELECT * FROM makanan JOIN kategori ON kategori.KODE_KATEGORI = makanan.KODE_KATEGORI WHERE kategori.NAMA_KATEGORI = :kategori");
@@ -22,6 +38,7 @@ function getAllMenuByCategory($kategori) {
 		echo $err->getMessage();
 	}
 }
+
 function getMenuByKode($kode_makanan) {
   try{
 		$statement = DB->prepare("SELECT KODE_MAKANAN, NAMA_MAKANAN, HARGA_MAKANAN, STOK_PRODUK, GAMBAR_MAKANAN, makanan.KODE_KATEGORI, NAMA_KATEGORI, ID_SUPPLIER FROM makanan INNER JOIN kategori ON makanan.KODE_KATEGORI = kategori.KODE_KATEGORI WHERE KODE_MAKANAN = :kode_makanan ");
@@ -33,6 +50,7 @@ function getMenuByKode($kode_makanan) {
 		echo $err->getMessage();
 	}
 }
+
 function insertMenu($data, $file) {
 	$nama = htmlspecialchars($data['nama']);
 	$harga = intval($data['harga']);
@@ -100,6 +118,7 @@ function editMenu($data, $file) {
 		return false;
 	}
 }
+
 function deleteMenu($kode_makanan) {
 	$result = getMenuByKode($kode_makanan);
 
@@ -115,7 +134,10 @@ function deleteMenu($kode_makanan) {
 	}
 }
 
-// CARTS
+
+
+// ========== KERANJANG MAKANAN ===========
+
 function getAllCarts()  {
 	try{
 		$statement = DB->prepare("SELECT keranjang.KODE_MAKANAN, NAMA_MAKANAN, HARGA_MAKANAN, QTY, GAMBAR_MAKANAN, NAMA_KATEGORI, STOK_PRODUK
@@ -131,6 +153,7 @@ function getAllCarts()  {
 		echo $err->getMessage();
 	}
 }
+
 function insertCarts($kode_makanan) {
 	try{
 		$statement = DB->prepare("INSERT INTO keranjang(ID_PELANGGAN, KODE_MAKANAN, QTY) VALUES (:id_pelanggan, :kode_makanan, :qty)");
@@ -144,6 +167,7 @@ function insertCarts($kode_makanan) {
 		echo $err->getMessage();
 	}
 }
+
 function deleteCartsByKode($kode_makanan) {
 	try{
 		$statement = DB->prepare("DELETE FROM keranjang WHERE KODE_MAKANAN = :kode_makanan");
@@ -155,6 +179,7 @@ function deleteCartsByKode($kode_makanan) {
 		echo $err->getMessage();
 	}
 }
+
 function deleteAllCarts() {
 	try{
 		$statement = DB->prepare("DELETE FROM keranjang WHERE ID_PELANGGAN = :id_pelanggan");
@@ -166,6 +191,7 @@ function deleteAllCarts() {
 		echo $err->getMessage();
 	}
 }
+
 function editCarts($data) {
 	$kode_makanan = $data['kode_makanan'];
 	$qty = $data['qty'];
@@ -183,6 +209,7 @@ function editCarts($data) {
 		echo $err->getMessage();
 	}
 }
+
 function insertOrders($data) {
 	$total = $data['total'];
 	$kode_makanan = $data['kode_makanan'];

@@ -12,6 +12,7 @@ function getAllPayment() {
       echo $err->getMessage();
   }
 }
+
 function getPaymentById($id_metode) {
   try {
     $statement = DB->prepare("SELECT * FROM metode_bayar WHERE ID_PELANGGAN = :id_pelanggan AND ID_METODE = :id_metode");

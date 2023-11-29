@@ -11,6 +11,20 @@ function getAllCustomer() {
         echo $err->getMessage();
     }
 }
+
+function getAllCustomerByLimit($limit, $offset) {
+    try {
+		$statement = DB->prepare("SELECT * FROM pelanggan LIMIT :limit OFFSET :offset");
+        $statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindParam(':offset', $offset, PDO::PARAM_INT);
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+    catch(PDOException $err){
+        echo $err->getMessage();
+    }
+}
+
 function getCustomerById() {
     try {
 		$statement = DB->prepare("SELECT * FROM pelanggan WHERE ID_PELANGGAN = :id_pelanggan");

@@ -1,6 +1,8 @@
 <?php 
 require_once BASEPATH . "/data/connection.php";
 
+// ========== DETAIL PESANAN ===========
+
 function getAllOrdersDetail($kode_transaksi) {
   try{
 		$statement = DB->prepare(
@@ -17,6 +19,7 @@ function getAllOrdersDetail($kode_transaksi) {
 		echo $err->getMessage();
 	}
 }
+
 function getAllOrdersDetailByLimit($kode_transaksi, $limit, $offset) {
 	try{
 		$statement = DB->prepare(
@@ -35,6 +38,7 @@ function getAllOrdersDetailByLimit($kode_transaksi, $limit, $offset) {
 		echo $err->getMessage();
 	}
 }
+
 function deleteOrdersDetailByKode($kode_transaksi, $kode_makanan) {
 	try{
 		$statement = DB->prepare("DELETE FROM transaksi_detail WHERE KODE_MAKANAN = :kode_makanan AND KODE_TRANSAKSI = :kode_transaksi");
@@ -59,6 +63,7 @@ function getAllOrdersById() {
 		echo $err->getMessage();
 	} 
 }
+
 function getAllOrdersByIdAndLimit($limit, $offset) {
 	try{
 		$statement = DB->prepare("SELECT * FROM transaksi WHERE ID_PELANGGAN = :id_pelanggan LIMIT :limit OFFSET :offset");
@@ -72,6 +77,38 @@ function getAllOrdersByIdAndLimit($limit, $offset) {
 		echo $err->getMessage();
 	} 
 }
+
+
+
+// ========== PESANAN ===========
+
+function getAllOrders() {
+	try{
+		$statement = DB->query("SELECT * FROM transaksi");
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+	} 	
+}
+
+function getAllOrdersByDate($status, $date_awal, $date_akhir) {
+	try{
+		$statement = DB->prepare("SELECT * FROM transaksi t 
+		INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
+		WHERE t.STATUS = :status AND t.TANGGAL_PESAN BETWEEN :date_awal AND :date_akhir ORDER BY t.TANGGAL_PESAN ASC");
+		$statement->bindValue(':status', $status);
+		$statement->bindValue(':date_awal', "$date_awal 00:00:01");
+		$statement->bindValue(':date_akhir', "$date_akhir 23:59:59");
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+	} 	
+}
+
 function editOrders($kode_transaksi, $data) {
   $kode_makanan = $data['kode_makanan'];
   $sisa_stok = $data['sisa_stok'];
@@ -98,32 +135,6 @@ function editOrders($kode_transaksi, $data) {
   }
 }
 
-
-function getAllOrders() {
-	try{
-		$statement = DB->query("SELECT * FROM transaksi");
-		$statement->execute();
-		return $statement->fetchAll(PDO::FETCH_ASSOC);
-	}
-	catch(PDOException $err){
-		echo $err->getMessage();
-	} 	
-}
-function getAllOrdersByDate($status, $date_awal, $date_akhir) {
-	try{
-		$statement = DB->prepare("SELECT * FROM transaksi t 
-		INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
-		WHERE t.STATUS = :status AND t.TANGGAL_PESAN BETWEEN :date_awal AND :date_akhir ORDER BY t.TANGGAL_PESAN ASC");
-		$statement->bindValue(':status', $status);
-		$statement->bindValue(':date_awal', "$date_awal 00:00:01");
-		$statement->bindValue(':date_akhir', "$date_akhir 23:59:59");
-		$statement->execute();
-		return $statement->fetchAll(PDO::FETCH_ASSOC);
-	}
-	catch(PDOException $err){
-		echo $err->getMessage();
-	} 	
-}
 function getAllOrdersByDateAndLimit($status, $date_awal, $date_akhir, $limit, $offset) {
 	try{
 		$statement = DB->prepare("SELECT * FROM transaksi t 
@@ -141,6 +152,7 @@ function getAllOrdersByDateAndLimit($status, $date_awal, $date_akhir, $limit, $o
 		echo $err->getMessage();
 	} 	
 }
+
 function getSumTotalInOrders($status, $tanggal) {
 	try{
 		$statement = DB->prepare("SELECT SUM(TOTAL) TOTAL FROM transaksi WHERE TANGGAL_PESAN LIKE :tanggal AND STATUS = :status");

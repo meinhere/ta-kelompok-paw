@@ -5,32 +5,40 @@ include "templates/header.php";
 
 require_once BASEPATH . "/data/transaksi.php";
 
+// Untuk filter 
 if (isset($_POST['tahun'])) {
-  $year = $_POST['tahun'];
-  $month = $_POST['bulan'];
+  $year = $_POST['tahun']; // mengambil tahun yang diinputkan dalam filter
+  $month = $_POST['bulan']; // mengambil bulang yang diinputkan dalam filter
 } else {
-  $year = date("Y");
-  $month = date("m");
+  $year = date("Y"); // mengambil tahun sekarang
+  $month = date("m"); // mengambil bulan sekarang
 }
-$last_date = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-$total_bayar = 0;
+
+$last_date = cal_days_in_month(CAL_GREGORIAN, $month, $year); // mengambil hari terakhir dalam bulan tsb
+$total_harga = 0;
 $label_chart = [];
 $value_chart = [];
 
+// Rekapan belum dibayar
 if (isset($_GET['tunda'])) {
+  // Untuk mengambil semua transaksi dalam satu bulan
   $transaksi = getAllOrdersByDate(0, "$year-$month-1", "$year-$month-$last_date");
 
+  // Untuk mengambil tanggal transaksi per hari 
   foreach ($transaksi as $row) {
-    $tanggal = explode(" ", $row['TANGGAL_PESAN'])[0];
-    if (!in_array($tanggal, $label_chart)) $label_chart[] = $tanggal;
+    $tanggal = explode(" ", $row['TANGGAL_PESAN'])[0]; // mengambil tanggal saja (tidak termasuk waktu)
+    // jika hari tidak ada pada array label_chart tambahkan (tidak duplikat hari)
+    if (!in_array($tanggal, $label_chart)) $label_chart[] = $tanggal; 
   }
   
+  // Untuk mengambil total harga penjualan dalam hari tersebut
   foreach ($label_chart as $row) {
-    $total = getSumTotalInOrders(0, $row);
-    $total_bayar += $total['TOTAL'];
-    $value_chart[] = $total['TOTAL'];
+    $total = getSumTotalInOrders(0, $row); // mengambil hasil penjumlahan semua transaksi yang belum dibayar
+    $total_harga += $total['TOTAL']; // menambahkan total ke dalam total_harga
+    $value_chart[] = $total['TOTAL']; // menambah total ke dalam array value_chart
   }
   
+  // Mengatur pagination
   $total_transaksi = count($transaksi);
   $limit = 8;
   $total_page = ceil($total_transaksi / $limit);
@@ -41,16 +49,21 @@ if (isset($_GET['tunda'])) {
 } else {
   $transaksi = getAllOrdersByDate(1, "$year-$month-1", "$year-$month-$last_date");
 
+  // Untuk mengambil tanggal transaksi per hari 
   foreach ($transaksi as $row) {
-    $tanggal = explode(" ", $row['TANGGAL_PESAN'])[0];
+    $tanggal = explode(" ", $row['TANGGAL_PESAN'])[0]; // mengambil tanggal saja (tidak termasuk waktu)
+    // jika hari tidak ada pada array label_chart tambahkan (tidak duplikat hari)
     if (!in_array($tanggal, $label_chart)) $label_chart[] = $tanggal;
   }
+
+  // Untuk mengambil total harga penjualan dalam hari tersebut
   foreach ($label_chart as $row) {
-    $total = getSumTotalInOrders(1, $row);
-    $total_bayar += $total['TOTAL'];
-    $value_chart[] = $total['TOTAL'];
+    $total = getSumTotalInOrders(1, $row); // mengambil hasil penjumlahan semua transaksi yang belum dibayar
+    $total_harga += $total['TOTAL']; // menambahkan total ke dalam total_harga
+    $value_chart[] = $total['TOTAL']; // menambah total ke dalam array value_chart
   }
-  
+
+  // Mengatur pagination
   $total_transaksi = count($transaksi);
   $limit = 8;
   $total_page = ceil($total_transaksi / $limit);
@@ -61,6 +74,7 @@ if (isset($_GET['tunda'])) {
 }
 
 $no = ($active_page * $limit) - $limit + 1;
+$href = isset($_GET['tunda']) ? "?tunda&page=" : "?page="; // href untuk pagination
 ?>
 <main class="main-container">
   <div class="main-title">
@@ -119,29 +133,7 @@ $no = ($active_page * $limit) - $limit + 1;
         </tr>
         <?php endforeach; ?>
       </table>
-      <div class="pagination">
-          <?php $href = isset($_GET['tunda']) ? "?tunda&page=" : "?page=" ?>
-          <ul>
-              <li>
-                  <a class="primary-btn" href="<?= ($active_page > 1) ? $href . $active_page - 1 : $href . $active_page ?>">Prev</a>
-              </li>
-              <?php for ($i = 1; $i <= $total_page; $i++) : ?>
-                  <?php if ($i == $active_page) : ?>
-                      <li>    
-                          <a class="primary-btn active"><?= $i ?></a>
-                      </li>
-                  <?php else : ?>
-                      <li>
-                          <a class="primary-btn" href="<?= $href . $i ?>"><?= $i ?></a>
-                      </li>
-                  <?php endif; ?>
-              <?php endfor; ?>
-              <li>
-                  <a class="primary-btn" href="<?= $active_page < $total_page ? $href . $active_page + 1 : $href . $active_page ?>">Next</a>
-
-              </li>
-          </ul>
-      </div>
+      <?php pagination($total_page, $active_page, $href) ?>
     </div>
   </div>
   
@@ -154,7 +146,7 @@ $no = ($active_page * $limit) - $limit + 1;
 
         <tr>
           <td><?= --$no; ?></td>
-          <td><?= "Rp " . number_format($total_bayar, 0, ',', '.');?></td>
+          <td><?= "Rp " . number_format($total_harga, 0, ',', '.');?></td>
         </tr>
       </table>
     </div>

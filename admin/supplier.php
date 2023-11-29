@@ -10,7 +10,15 @@ if (isset($_GET['hapus'])) {
 }
 
 $supplier = getAllSupplier();
-$no = 1;
+$total_supplier = count($supplier);
+$limit = 10;
+$total_page = ceil($total_supplier / $limit);
+$active_page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = ($active_page > 1) ? ($active_page * $limit) - $limit : 0;
+
+$supplier = getAllSupplierByLimit($limit, $offset);
+
+$no = ($active_page * $limit) - $limit + 1;
 ?>
 
 <main class="main-container">
@@ -29,6 +37,8 @@ $no = 1;
       Tambah
     </a>
   </div>
+
+  <?php pagination($total_page, $active_page) ?>
   
   <div class="table-style">
     <table>

@@ -36,6 +36,7 @@ if (isset($_POST['ubah'])) {
   if (empty($errors)) $success = insertMenu($_POST, $_FILES);
 }
 ?>
+
 <!-- Main -->
 <main class="main-container">
   <div class="main-title">
@@ -127,19 +128,19 @@ if (isset($_POST['ubah'])) {
     </div>
   </div>
 </main>
+<!-- End Main -->
 
 <script>
-		function previewImg() {
-			const gambar = document.querySelector('#gambar');
-			const gambarMakanan = document.querySelector('.img-prev');
+  function previewImg() {
+    const gambar = document.querySelector('#gambar');
+    const gambarMakanan = document.querySelector('.img-prev');
 
-			const fileGambar = new FileReader();
-			fileGambar.readAsDataURL(gambar.files[0]);
+    const fileGambar = new FileReader();
+    fileGambar.readAsDataURL(gambar.files[0]);
 
-			fileGambar.onload = function(e) {
-				gambarMakanan.src = e.target.result;
-			}
-		}
-	</script>
-<!-- End Main -->
+    fileGambar.onload = function(e) {
+      gambarMakanan.src = e.target.result;
+    }
+  }
+</script>
 <?php include "templates/footer.php" ?>

@@ -12,6 +12,19 @@ function getAllSupplier() {
     }
 }
 
+function getAllSupplierByLimit($limit, $offset) {
+  try {
+		$statement = DB->prepare("SELECT * FROM supplier LIMIT :limit OFFSET :offset");
+		$statement->bindParam(':limit', $limit, PDO::PARAM_INT);
+		$statement->bindParam(':offset', $offset, PDO::PARAM_INT);
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	}
+    catch(PDOException $err){
+        echo $err->getMessage();
+    }
+}
+
 function getSupplierById($id_supplier) {
     try {
 		$statement = DB->prepare("SELECT * FROM supplier WHERE ID_SUPPLIER = :id_supplier");

@@ -1,4 +1,5 @@
 <?php include "config/url.php" ?>
+<?php require_once BASEPATH . "/templates/pagination.php"; ?>
 <?php 
 session_start();
 date_default_timezone_set("Asia/Jakarta");
@@ -11,7 +12,7 @@ if ($page != "home") {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
