@@ -21,7 +21,7 @@ $subTotal = 0;
         <h1>Konfirmasi Pembayaran - <?= $id; ?></h1>
         <div class="action">
           <div>
-            <a class="back" href="pesanan.php"><-- Kembali</a>
+            <a class="back" href="pesanan.php">&laquo; Kembali</a>
           </div>
           <div>
             <h3>Pilih metode Pembayaran</h3>
@@ -57,7 +57,7 @@ $subTotal = 0;
             <tr>
               <td><?= $no++; ?></td>
               <td><?= $row['NAMA_MAKANAN']; ?></td>
-              <td class="action" id="konfirmasi-action">
+              <td class="action">
                 <input type="text" value="<?= $row['QTY']; ?>" data-stok="<?= $row['STOK_PRODUK']; ?>" name="qty[]" class="qty" readonly>
                 <input type="hidden" name="kode_makanan[]" value="<?= $row['KODE_MAKANAN']; ?>">
                 <input type="hidden" name="sisa_stok[]" value="<?= $row['STOK_PRODUK'] - $row['QTY']; ?>">

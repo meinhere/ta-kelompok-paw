@@ -8,6 +8,7 @@ require_once "data/pembayaran.php";
 require_once "libs/validate.php";
 $pelanggan = getCustomerById();
 
+// Melakukan edit data
 $errors = array();
 if (isset($_POST["edit"])) {
     $errors = validateEdit($errors, $_POST);
@@ -15,6 +16,7 @@ if (isset($_POST["edit"])) {
     if (empty($errors)) $edit = editCustomer($_POST);
 }
 
+// Menambah Pembayaran
 if (isset($_POST["bri"])) {
     $errors = validatePayment($errors, $_POST);
 

@@ -7,7 +7,14 @@ require_once BASEPATH . "/data/pelanggan.php";
 require_once BASEPATH . "/data/transaksi.php";
 
 $pelanggan = getAllCustomer();
-$no = 1;
+$total_pelanggan = count($pelanggan);
+$limit = 10;
+$total_page = ceil($total_pelanggan / $limit);
+$active_page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = ($active_page > 1) ? ($active_page * $limit) - $limit : 0;
+
+$pelanggan = getAllCustomerByLimit($limit, $offset);
+$no = ($active_page * $limit) - $limit + 1;
 
 $transaksi = getAllOrders();
 $sudah_bayar = 0;
@@ -43,6 +50,8 @@ foreach ($label_tunda as $row) {
   <div class="main-title">
     <h2>DATA CUSTOMER</h2>
   </div>
+
+  <?php pagination($total_page, $active_page) ?>
 
   <div class="table-style">
     <table>

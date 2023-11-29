@@ -4,6 +4,7 @@ session_start();
 date_default_timezone_set("Asia/Jakarta");
 
 require_once BASEPATH . "/data/karyawan.php";
+require_once BASEPATH . "/templates/pagination.php";
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] == "pelanggan") {
   header("Location: " . BASEURL);

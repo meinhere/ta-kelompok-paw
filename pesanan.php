@@ -7,7 +7,7 @@ require_once "data/transaksi.php";
 $orders = getAllOrdersById();
 
 $total_transaksi = count($orders);
-$limit = 10;
+$limit = 8;
 $total_page = ceil($total_transaksi / $limit);
 $active_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($active_page > 1) ? ($active_page * $limit) - $limit : 0;
@@ -38,36 +38,16 @@ $no = ($active_page * $limit) - $limit + 1;
                     <td><?= $row['STATUS'] == 0 ? "Belum Dibayar" : "Sudah Dibayar"; ?></td>
                     <td>
                         <?php if ($row['STATUS'] == 0): ?>
-                            <a href="konfirmasi.php?id=<?= $row['KODE_TRANSAKSI']; ?>"><button class="btn btn-blue">Bayar Pesanan</button></a>
+                            <a href="konfirmasi.php?id=<?= $row['KODE_TRANSAKSI']; ?>" class="btn btn-blue">Bayar Pesanan</a>
                         <?php else: ?>
-                            <a href="detail_pesanan.php?id=<?= $row['KODE_TRANSAKSI']; ?>"><button class="btn btn-yellow">Detail Pesanan</button></a>
+                            <a href="detail_pesanan.php?id=<?= $row['KODE_TRANSAKSI']; ?>" class="btn btn-yellow">Detail Pesanan</a>
                         <?php endif ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
             </table>
         </div>
-        <div class="pagination">
-            <ul>
-                <li>
-                    <a class="primary-btn" href="?page=<?= ($active_page > 1) ? $active_page - 1 : $active_page ?>">Prev</a>
-                </li>
-                <?php for ($i = 1; $i <= $total_page; $i++) : ?>
-                    <?php if ($i == $active_page) : ?>
-                        <li>    
-                            <a class="primary-btn active"><?= $i ?></a>
-                        </li>
-                    <?php else : ?>
-                        <li>
-                            <a class="primary-btn" href="?page=<?= $i ?>"><?= $i ?></a>
-                        </li>
-                    <?php endif; ?>
-                <?php endfor; ?>
-                <li>
-                    <a class="primary-btn" href="?page=<?= $active_page < $total_page ? $active_page + 1 : $active_page ?>">Next</a>
-                </li>
-            </ul>
-        </div>
+        <?php pagination($total_page, $active_page); ?>
     </div>
 </div>
 <?php include "templates/footer.php" ?>

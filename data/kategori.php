@@ -1,6 +1,7 @@
 <?php 
 require_once BASEPATH . "/data/connection.php";
 
+// ----- Ambil semua data pada tb kategori ------
 function getAllCategory() {
     try {
         $statement = DB->query("SELECT * FROM kategori");
@@ -12,7 +13,7 @@ function getAllCategory() {
     }
 }
 
-
+// ----- Ambil data pada tb kategori berdasarkan id_kategori ------
 function getCategoryByKode($kode_kategori) {
     try {
 		$statement = DB->prepare("SELECT * FROM kategori WHERE KODE_KATEGORI = :kode_kategori");

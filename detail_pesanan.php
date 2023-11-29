@@ -7,22 +7,22 @@ require_once "data/transaksi.php";
 $id = $_GET['id'];
 $ordersDetail = getAllOrdersDetail($id);
 
+// Mengatur Pagination
 $total_transaksi = count($ordersDetail);
 $limit = 8;
 $total_page = ceil($total_transaksi / $limit);
 $active_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($active_page > 1) ? ($active_page * $limit) - $limit : 0;
-
 $ordersDetail = getAllOrdersDetailByLimit($id, $limit, $offset);
-
 $no = ($active_page * $limit) - $limit + 1;
+
 ?>
 <?php include "templates/navbar.php" ?>
 <div class="content">
     <div class="detail-pesanan-page">
         <div class="header">
             <h1>Detail Pesanan - <?= $id; ?></h1>
-            <a class="back" href="pesanan.php"><-- Kembali</a>
+            <a class="back" href="pesanan.php">&laquo; Kembali</a>
             <div class="report">
                 <button onclick="window.print()" type="submit">PDF</button>
                 <a href="<?= BASEURL . "/libs/excel.php?id=" . $_GET['id']; ?>">Excel</a>

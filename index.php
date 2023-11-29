@@ -21,9 +21,8 @@ include "templates/header.php";
   </header>
   <!-- Header End -->
 
-  <!-- content start -->
+  <!-- Description Content Start -->
   <div class="restorant">
-    <!-- description content -->
     <div class="restorant-content">
       <div class="restorant-content-head">
         <img src="<?= BASEURL; ?>/assets/img/home/gambar1.jpg" alt="gambar 1" />
@@ -71,7 +70,9 @@ include "templates/header.php";
       </div>
     </div>
   </div>
+  <!-- Description End  -->
 
+  <!-- Kategori Start -->
   <div class="menu-selection" id="menu">
     <h1>Kategori Makanan</h1>
 
@@ -132,6 +133,7 @@ include "templates/header.php";
       </a>
     </div>
   </div>
+  <!-- Kategori End -->
 
   <!-- Footer Start -->
   <footer>

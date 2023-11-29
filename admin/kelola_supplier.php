@@ -6,6 +6,7 @@ include "templates/header.php";
 
 require_once BASEPATH . "/libs/validate.php";
 require_once BASEPATH . "/data/supplier.php";
+
 if (isset($_GET['ubah'])) {
   $supplier = getSupplierById($_GET['ubah']);
 } else {
