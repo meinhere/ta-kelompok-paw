@@ -1,10 +1,8 @@
 /* Table Style */
 .table-style {
   width: 100%;
-  max-height: 80vh;
-  border-radius: 1rem;
+  border-radius: 1 rem;
   margin: 1rem auto;
-  overflow: auto;
 }
 .table-style.konfirmasi-bayar {
   max-height: 25rem;
@@ -18,17 +16,19 @@
   border-radius: 0.5rem;
   background-color: var(--grey);
   padding: 0.5rem;
-  position: sticky;
-  top: 0; /* Menetapkan elemen th di bagian atas tabel saat di-scroll */
-  z-index: 2; /* Mengatur z-index agar elemen th tetap di atas elemen lain */
 }
 .table-style tr td {
   font-size: 1rem;
-  padding: 0.4rem 0.7rem;
+  padding: 0.4rem 0;
   border-bottom: 1px solid rgb(87, 85, 85);
 }
 .table-style .empty-orders {
   padding: 3rem 0;
+}
+.table-style tr td.action-orders a {
+  display: block;
+  margin: 10px 0;
+  width: 50%;
 }
 
 /* Hero Section */
@@ -410,15 +410,15 @@ footer {
   font-size: 13px;
   margin-left: 15px;
 }
-.order {
+.orders {
   border-top: 1px solid var(--light);
   padding-top: 12px;
   margin-top: 8px;
 }
-.order h5 {
+.orders h5 {
   color: #b7b7b7;
 }
-.order-detail {
+.orders-detail {
   margin: 6px 0;
   padding: 0 18px;
   display: flex;
@@ -426,14 +426,14 @@ footer {
   color: #b7b7b7;
   font-size: 0.9em;
 }
-.order-detail#total {
+.orders-detail#total {
   margin-top: 13px;
 }
-.order-submit .save,
-.order-submit .reset,
-.order-submit .order {
+.orders-submit .save,
+.orders-submit .reset,
+.orders-submit .order {
   margin: 0 5px;
-  font-size: 1.1em;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 
@@ -561,7 +561,6 @@ footer {
   }
   .table-style {
     width: 100%;
-    overflow-x: auto;
   }
   .form-edit {
     flex-wrap: wrap;

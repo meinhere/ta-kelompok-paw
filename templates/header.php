@@ -7,7 +7,7 @@ date_default_timezone_set("Asia/Jakarta");
 
 if ($page != "home") {
     if(!isset($_SESSION['login']) || $_SESSION['login'] != "pelanggan") {
-        header("Location: index.php");
+        header("Location: login.php");
         exit();
     }
 }
