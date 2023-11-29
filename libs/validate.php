@@ -3,7 +3,7 @@ require_once BASEPATH . "/data/connection.php";
 
 // ----- Pengecekan isi inputan saat Login -----
 // cek username pelanggan
-function checkUsernamePelanggan($username) {
+function checkUsernameCustomer($username) {
     $statement = DB->prepare("SELECT * FROM pelanggan WHERE USERNAME_PELANGGAN = :username");
     $statement->bindValue(':username', $username);
     $statement->execute();
@@ -11,7 +11,7 @@ function checkUsernamePelanggan($username) {
     return $statement->rowCount() > 0 && preg_match("/^[a-z0-9_]+$/", $username); 
 }
 // cek username karyawan
-function checkUsernameKaryawan($username) {
+function checkUsernameEmployee($username) {
     $statement = DB->prepare("SELECT * FROM karyawan WHERE USERNAME_KARYAWAN = :username");
     $statement->bindValue(':username', $username);
     $statement->execute();
@@ -19,7 +19,7 @@ function checkUsernameKaryawan($username) {
     return $statement->rowCount() > 0 && preg_match("/^[a-z0-9_]+$/", $username);
 }
 // cek password pelanggan
-function checkPasswordPelanggan($username, $password) {
+function checkPasswordCustomer($username, $password) {
     $statement = DB->prepare("SELECT * FROM pelanggan WHERE USERNAME_PELANGGAN = :username AND PASSWORD_PELANGGAN = SHA2(:password, 256)");
     $statement->bindValue(':username', $username);
     $statement->bindValue(':password', $password);
@@ -29,7 +29,7 @@ function checkPasswordPelanggan($username, $password) {
     return $statement->rowCount() > 0;
 }
 // cek password karyawan
-function checkPasswordKaryawan($username, $password) {
+function checkPasswordEmployee($username, $password) {
     $statement = DB->prepare("SELECT * FROM karyawan WHERE USERNAME_KARYAWAN = :username AND PASSWORD_KARYAWAN = SHA2(:password, 256)");
     $statement->bindValue(':username', $username);
     $statement->bindValue(':password', $password);
@@ -69,9 +69,9 @@ function validateLogin(&$errors, $username, $password){
         // jika password tidak kosong
         if (!empty($password)){
             // panggil fungsi untuk cek username apakah ada di pelanggan
-            if (checkUsernamePelanggan($username)){
+            if (checkUsernameCustomer($username)){
                 // panggil fungsi apakah password sama dengan yang ada di tb pelanggan
-                if (checkPasswordPelanggan($username, $password)){
+                if (checkPasswordCustomer($username, $password)){
                     $_SESSION['login'] = 'pelanggan'; // set session login = 'pelanggan'
                     header("Location: menu.php");
                     exit();
@@ -79,9 +79,9 @@ function validateLogin(&$errors, $username, $password){
                 return $errors["password"] = "Password salah"; // set errors untuk password salah
             } 
             // panggil fungsi untuk cek username apakah ada di karyawan
-            else if (checkUsernameKaryawan($username)){
+            else if (checkUsernameEmployee($username)){
                 // panggil fungsi apakah password sama dengan yang ada di tb karyawan
-                if (checkPasswordKaryawan($username, $password)){
+                if (checkPasswordEmployee($username, $password)){
                     $_SESSION['login'] = checkRoleAdministrator($username) ? "admin" : "manager"; // set session sesuai dengan role
                     header("Location: admin/index.php");
                     exit();
@@ -140,7 +140,7 @@ function validatePass(&$errors, $data) {
     if (empty($data)) {
         $errors['passwordErr'] = "Input tidak boleh kosong";
     } elseif (!preg_match("/^[A-Z]{1,}[a-z]{1,}[0-9]{1,}/", $data)) {
-        $errors['passwordErr'] = "Password harus berupa kombinasi alphabet dan angka";
+        $errors['passwordErr'] = "Password harus diawali huruf kapital diikuti kombinasi alphabet dan angka";
     } elseif (!preg_match("/[!@#$%^&*,._?:{}|<>]{2,}/", $data)) {
         $errors['passwordErr'] = "Password harus mengandung setidaknya dua karakter khusus";
     } elseif (strlen($data) < 8) {
@@ -178,7 +178,7 @@ function validateRegister(&$errors, $data) {
     validateNoHp($errors, $nohp);
     validateAddress($errors, $alamat);
     
-    if(checkUsernamePelanggan($username)) $errors['usernameErr'] = "Username sudah ada";
+    if(checkUsernameCustomer($username)) $errors['usernameErr'] = "Username sudah ada";
 
     return $errors;
 }
@@ -217,6 +217,8 @@ function validateRegisterEmployee(&$errors, $data) {
     validatePass($errors, $password);
     validatePass2($errors, $password, $password2);
     validateNoHp($errors, $nohp);
+
+    if(checkUsernameEmployee($username)) $errors['usernameErr'] = "Username sudah ada";
 
     return $errors;
 }

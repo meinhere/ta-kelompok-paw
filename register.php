@@ -2,6 +2,8 @@
 $title = "Register | JapanFoods";
 $page = "regist";
 
+ob_start();
+
 require_once "config/url.php";
 require_once "libs/validate.php";
 require_once "data/pelanggan.php";
