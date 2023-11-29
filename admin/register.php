@@ -2,6 +2,8 @@
 $title = "Register Karyawan | JapanFoods";
 $page = "regist";
 
+ob_start();
+
 require_once "../config/url.php";
 require_once BASEPATH . "/libs/validate.php";
 require_once BASEPATH . "/data/karyawan.php";

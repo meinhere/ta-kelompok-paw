@@ -1,6 +1,7 @@
 <?php include "../config/url.php" ?>
 <?php 
 session_start();
+ob_start();
 date_default_timezone_set("Asia/Jakarta");
 
 require_once BASEPATH . "/data/karyawan.php";
@@ -26,9 +27,9 @@ $karyawan = getEmployeeById();
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
   <link rel="website icon" href="<?= BASEASSET; ?>/img/logo/icon.png">
-  <link rel="stylesheet" href="<?= BASEASSET;?>/css/base.css">
-  <link rel="stylesheet" href="<?= BASEASSET; ?>/css/admin/styles.css" />
+  <link rel="stylesheet" href="<?= BASEASSET; ?>/css/base.css">
   <link rel="stylesheet" href="<?= BASEASSET; ?>/icon/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="<?= BASEASSET; ?>/css/admin/styles.css" />
 
   <title><?= $title; ?></title>
 </head>

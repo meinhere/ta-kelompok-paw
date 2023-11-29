@@ -316,7 +316,7 @@ footer {
 }
 .menu-card .menu-btn.check {
   background-color: var(--green);
-  color: var(--yellow);
+  color: white;
   cursor: default;
 }
 

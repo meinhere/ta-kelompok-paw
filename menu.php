@@ -51,7 +51,7 @@ $banyakBarang = 0;
               <?php if(!in_array($row['KODE_MAKANAN'], $kolom)) : ?>
               <button class="menu-btn" type="submit" name="tambah">+</button>
               <?php else: ?>
-              <span class="menu-btn check">v</span>
+              <span class="menu-btn check"><i class="fa fa-check"></i></span>
               <?php endif ?>
             </form>
           </div>
