@@ -64,6 +64,19 @@ function getAllOrdersById() {
 	} 
 }
 
+function deleteOrdersById($kode_transaksi) {
+	try{
+		$statement = DB->prepare("DELETE FROM transaksi WHERE KODE_TRANSAKSI = :kode_transaksi");
+		$statement->bindValue(':kode_transaksi', $kode_transaksi);
+		$statement->execute();
+		return true;
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+		return false;
+	} 
+}
+
 function getAllOrdersByIdAndLimit($limit, $offset) {
 	try{
 		$statement = DB->prepare("SELECT * FROM transaksi WHERE ID_PELANGGAN = :id_pelanggan LIMIT :limit OFFSET :offset");

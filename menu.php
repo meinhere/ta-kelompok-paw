@@ -87,29 +87,29 @@ $banyakBarang = 0;
                 <?php endforeach; ?>
               <?php endif; ?>
             </div>
-            <div class="order">
+            <div class="orders">
               <?php 
               $ongkir = 5 / 100 * $subTotal;
               $total = $subTotal + $ongkir;
               ?>
-              <div class="order-detail" id="qty">
+              <div class="orders-detail" id="qty">
                 <p><?= count($keranjang); ?> barang</p>
                 <p>Banyak : <span><?= $banyakBarang; ?></span></p>
               </div>
-              <div class="order-detail" id="subtotal">
+              <div class="orders-detail" id="subtotal">
                 <p>Subtotal</p>
                 <span><?= "Rp " . number_format($subTotal, 0, ',', '.');?></span>
               </div>
-              <div class="order-detail" id="tax">
+              <div class="orders-detail" id="tax">
                 <p>Ongkir</p>
                 <span><?= "Rp " . number_format($ongkir, 0, ',', '.');?></span>
               </div>
-              <div class="order-detail" id="total">
+              <div class="orders-detail" id="total">
                 <h3>Total</h3>
                 <b><?= "Rp " . number_format($total, 0, ',', '.');?></b>
               </div>
             </div>
-            <div class="order-submit">
+            <div class="orders-submit">
               <?php if($keranjang) : ?>
               <input type="hidden" name="total" value="<?= $total; ?>">
               <button class="btn btn-green save" name="save" type="submit">Simpan</button>
