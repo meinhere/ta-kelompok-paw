@@ -19,6 +19,7 @@ if (isset($_GET['ubah'])) {
 
 if (isset($_POST['ubah'])) {
   $errors = validateSupplier($errors, $_POST);
+
   if (empty($errors)) $success = editSupplier($_POST);
 } else if (isset($_POST['tambah'])){
   $errors = validateSupplier($errors, $_POST);
@@ -26,14 +27,17 @@ if (isset($_POST['ubah'])) {
   if (empty($errors)) $success = insertSupplier($_POST);
 } 
 ?>
-<!-- Main -->
+<!-- Main Start -->
 <main class="main-container">
   <div class="main-title">
     <h2><?= isset($_GET['ubah']) ? "Ubah Data Supplier" : "Tambah Data Supplier"; ?></h2>
   </div>
 
+  <!-- Form Start -->
   <div class="form-content">
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+
+      <!-- Success Alert -->
       <?php 
           if (isset($success) && $success) {
               echo "<div class='form-success'>Data Berhasil Diubah</div>";
@@ -63,6 +67,7 @@ if (isset($_POST['ubah'])) {
           </div>
       </div>
 
+      <!-- Action Submit -->
       <div class="input-action">
         <?php if(isset($_GET['ubah'])): ?>
         <button type="submit" name="ubah" class="btn btn-blue"> 
@@ -82,6 +87,7 @@ if (isset($_POST['ubah'])) {
       </div>
     </form>
   </div>
+  <!-- Form End -->
 </main>
-<!-- End Main -->
+<!-- Main End -->
 <?php include "templates/footer.php" ?>

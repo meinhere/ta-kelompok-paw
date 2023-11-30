@@ -7,11 +7,13 @@ date_default_timezone_set("Asia/Jakarta");
 require_once BASEPATH . "/data/karyawan.php";
 require_once BASEPATH . "/templates/pagination.php";
 
+// jika tidak ada session login atau session login = pelanggan
 if (!isset($_SESSION['login']) || $_SESSION['login'] == "pelanggan") {
   header("Location: " . BASEURL);
-    exit();
-  }
+  exit();
+}
 
+// halaman yang boleh diakses sesuai dengan role
 if ($_SESSION['login'] == 'admin' && $page == 'rekap') {
   header("Location: " . BASEURL . "/admin");
 } else if($_SESSION['login'] == 'manager' && ($page == 'menu' || $page == 'sup' || $page == 'ks' || $page == 'km')) {
@@ -35,7 +37,7 @@ $karyawan = getEmployeeById();
 </head>
 <body>
   <div class="grid-container">
-    <!-- Header -->
+    <!-- Header Start -->
     <header class="header">
       <div class="menu-icon" onclick="openSidebar()">
         <span><i class="fa fa-bars" aria-hidden="true"></i></span>
@@ -46,8 +48,7 @@ $karyawan = getEmployeeById();
         <span>Selamat Datang, <strong><?= $karyawan['NAMA_KARYAWAN']; ?></strong></span>
       </div>
     </header>
-    <!-- End Header -->
+    <!-- Header End -->
 
-    <!-- Sidebar -->
+    <!-- Include Sidebar -->
     <?php include "templates/sidebar.php" ?>
-    <!-- End Sidebar -->

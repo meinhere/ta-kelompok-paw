@@ -104,7 +104,7 @@ $href = isset($_GET['tunda']) ? "?tunda&page=" : "?page="; // href untuk paginat
       </div>
       
       <div class="input-group">
-        <button class="btn btn-yellow" type="submit">Filter</button>
+        <button class="btn btn-blue" type="submit">Filter</button>
       </div>
     </form>
   </div>
@@ -145,13 +145,13 @@ $href = isset($_GET['tunda']) ? "?tunda&page=" : "?page="; // href untuk paginat
         </tr>
 
         <tr>
-          <td><?= --$no; ?></td>
+          <td><?= $total_transaksi; ?></td>
           <td><?= "Rp " . number_format($total_harga, 0, ',', '.');?></td>
         </tr>
       </table>
     </div>
 </main>
-<script src="<?= BASEURL; ?>/node_modules/chart.js/dist/chart.umd.js"></script>
+<script src="<?= BASEASSET; ?>/chart/dist/chart.umd.js"></script>
 
 <script>
   const ctx1 = document.getElementById("purchase-chart").getContext('2d');

@@ -6,17 +6,23 @@ include "templates/header.php";
 require_once "data/transaksi.php";
 require_once "data/pembayaran.php";
 $id = $_GET['id'];
-if (isset($_POST['pay'])) editOrders($id, $_POST);
+if (isset($_POST['pay'])) editOrders($id, $_POST); // mengubah status pada pesanan
 
 $ordersDetail = getAllOrdersDetail($id);
 $metode = getAllPayment();
 $no = 1;
 $subTotal = 0;
 ?>
+<!-- Include Navbar -->
 <?php include "templates/navbar.php" ?>
+
+<!-- Content Start -->
 <div class="content">
+  <!-- Konfirmasi Bayar Page Start -->
   <div class="konfirmasi-bayar-page">
+    <!-- Form STart -->
     <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
+      <!-- Header Start -->
       <div class="header">
         <h1>Konfirmasi Pembayaran - <?= $id; ?></h1>
         <div class="action">
@@ -39,6 +45,9 @@ $subTotal = 0;
           </div>
         </div>
       </div>
+      <!-- Header End -->
+
+      <!-- Table Start -->
       <div class="table-style konfirmasi-bayar">
         <table>
           <tr>
@@ -82,7 +91,11 @@ $subTotal = 0;
           </tr>
         </table>
       </div>
+      <!-- Table End -->
     </form>
+    <!-- Form End -->
   </div>
+  <!-- Konfirmasi Bayar Page End -->
 </div>
+<!-- Content End -->
 <?php include "templates/footer.php" ?>

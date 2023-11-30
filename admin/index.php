@@ -44,15 +44,17 @@ foreach ($label_tunda as $row) {
   $value_tunda[] = $total['TOTAL'];
 }
 ?>
-<!-- Main -->
+<!-- jika session login = admin -->
 <?php if ($_SESSION['login'] == "admin"): ?>
 <main class="main-container">
   <div class="main-title">
     <h2>DATA CUSTOMER</h2>
   </div>
 
+  <!-- Pagination View -->
   <?php pagination($total_page, $active_page) ?>
 
+  <!-- Table Start -->
   <div class="table-style">
     <table>
       <tr>
@@ -75,13 +77,17 @@ foreach ($label_tunda as $row) {
       <?php endforeach; ?>
     </table>
   </div>
+  <!-- Table End -->
 </main>
+
+<!-- jika session login = manager -->
 <?php else : ?>
 <main class="main-container">
   <div class="main-title">
     <h2>CATATAN TRANSAKSI</h2>
   </div>
 
+  <!-- Cards Start -->
   <div class="main-cards">
     <div class="card">
       <div class="card-inner">
@@ -99,8 +105,10 @@ foreach ($label_tunda as $row) {
       <h1><?= $belum_bayar; ?></h1>
     </div>
   </div>
+  <!-- Cards End -->
 
 
+  <!-- Charts Start -->
   <div class="charts">
     <div class="charts-card">
       <h3 class="chart-title">Grafik Transaksi yang sudah Dibayar</h3>
@@ -111,12 +119,14 @@ foreach ($label_tunda as $row) {
       <canvas id="pending-chart"></canvas>
     </div>
   </div>
+  <!-- Carts End -->
 </main>
-<script src="<?= BASEURL; ?>/node_modules/chart.js/dist/chart.umd.js"></script>
+<script src="<?= BASEASSET; ?>/chart/dist/chart.umd.js"></script>
 <script>
   const ctx1 = document.getElementById("purchase-chart").getContext('2d');
   const ctx2 = document.getElementById("pending-chart").getContext('2d');
 
+  // Chart Purchase 
   let chart1 = new Chart(ctx1, {
       type: 'bar',
       data: {
@@ -136,6 +146,7 @@ foreach ($label_tunda as $row) {
       }
   });
 
+  // Chart Pending
   let chart2 = new Chart(ctx2, {
       type: 'bar',
       data: {

@@ -23,9 +23,14 @@ if (isset($_POST["bri"])) {
     if (empty($errors)) $add = editPayment($_POST);
 }
 ?>
+<!-- Include Navbar -->
 <?php include "templates/navbar.php"; ?>
+
+<!-- Form Edit Start -->
 <div class="form-edit">    
+    <!-- Form Profile Start -->
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+        <!-- Success Alert For Profile -->
         <?php 
             if (isset($edit) && $edit) {
                 echo "<div class='form-success'>Data Berhasil Diubah</div>";
@@ -84,17 +89,25 @@ if (isset($_POST["bri"])) {
             </div>
         </div>
 
-        <button type="submit" name="edit" class="btn btn-blue">Simpan Perubahan</button>
+        <button type="submit" name="edit" class="btn btn-blue">
+            <i class="fa fa-floppy-o"></i>
+            Simpan Perubahan
+        </button>
     </form>
+    <!-- Form Profile End -->
 
+    <!-- Form Payment Start -->
     <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
         <h3>Tambahkan Metode Pembayaran</h3>
+
+        <!-- SUccess Alert For Payment -->
         <?php 
             if (isset($add) && $add) {
                 echo "<div class='form-success'>Data Berhasil Ditambah</div>";
                 header("Refresh: 1");
             }
         ?>
+        
         <div class="input-group">
             <label for="bri">Rekening BRI</label>
             <div class="err-group">
@@ -124,7 +137,12 @@ if (isset($_POST["bri"])) {
             </div>
         </div>
 
-        <button type="submit" class="btn btn-green">Tambah Metode</button>
+        <button type="submit" class="btn btn-green">
+            <i class="fa fa-plus"></i>
+            Tambah Metode
+        </button>
     </form>
+    <!-- Form Payment End -->
 </div>
+<!-- Form Edit End -->
 <?php include "templates/footer.php" ?>
