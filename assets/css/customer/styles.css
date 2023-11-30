@@ -1,33 +1,15 @@
 /* Table Style */
-.table-style {
-  width: 100%;
-  border-radius: 1 rem;
-  margin: 1rem auto;
-}
 .table-style.konfirmasi-bayar {
   max-height: 25rem;
 }
-.table-style table {
-  width: 100%;
-  text-align: center;
-}
-.table-style tr th {
-  color: #fdfdfd;
-  border-radius: 0.5rem;
-  background-color: var(--grey);
-  padding: 0.5rem;
-}
-.table-style tr td {
-  font-size: 1rem;
-  padding: 0.4rem 0;
-  border-bottom: 1px solid rgb(87, 85, 85);
-}
-.table-style .empty-orders {
+.table-style .empty-orders td {
+  font-size: 1.3rem;
   padding: 3rem 0;
+  font-weight: 800;
 }
 .table-style tr td.action-orders a {
   display: block;
-  margin: 10px 0;
+  margin: 5px auto;
   width: 50%;
 }
 
@@ -253,7 +235,7 @@ footer {
 }
 .main-menu .menu-list .menu {
   width: 100%;
-  max-height: 465px;
+  max-height: 470px;
   padding: 40px 0 0;
   display: flex;
   flex-wrap: wrap;
@@ -538,6 +520,19 @@ footer {
   html {
     font-size: 80%;
   }
+
+  .hero {
+    padding-left: 50px;
+  }
+
+  .restorant-content {
+    padding: 40px;
+  }
+  .restorant .restorant-content .restorant-content-head img {
+    width: 100%;
+    height: auto;
+  }
+
   .menu-page .content {
     overflow: auto;
   }
@@ -559,9 +554,15 @@ footer {
     width: 100%;
     padding: 0 1.5rem 3rem;
   }
+
   .table-style {
     width: 100%;
+    overflow-x: scroll;
   }
+  .table-style tr td.action-orders a {
+    width: 100%;
+  }
+
   .form-edit {
     flex-wrap: wrap;
   }

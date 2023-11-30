@@ -4,11 +4,11 @@ $page = "menu";
 include "templates/header.php";
 
 require_once "data/menu.php";
-if (isset($_POST['tambah'])) insertCarts($_POST['kode_makanan']);
-if (isset($_GET['del'])) deleteCartsByKode($_GET['del']);
-if (isset($_POST['reset'])) deleteAllCarts();
-if (isset($_POST['save'])) editCarts($_POST);
-if (isset($_POST['order'])) insertOrders($_POST);
+if (isset($_POST['tambah'])) insertCarts($_POST['kode_makanan']); // tambah makanan pada keranjang
+if (isset($_GET['del'])) deleteCartsByKode($_GET['del']); // hapus makanan berdasarkan kode 
+if (isset($_POST['reset'])) deleteAllCarts(); // hapus semua makanan pada keranjang
+if (isset($_POST['save'])) editCarts($_POST); // edit makanan pada keranjang
+if (isset($_POST['order'])) insertOrders($_POST); // tambah makanan pada pesanan
 
 $makanan = isset($_GET['kat']) ? getAllMenuByCategory($_GET['kat']) : getAllMenu();
 $keranjang = getAllCarts();
@@ -16,7 +16,9 @@ $kolom = array_column($keranjang, "KODE_MAKANAN");
 $subTotal = 0;
 $banyakBarang = 0;
 ?>
+<!-- Menu Page Start -->
 <div class="menu-page">
+  <!--  Side Nav Start -->
   <nav class="side-nav">
     <ul class="nav-links">
       <li class="<?= isset($_GET['kat']) ? "" : "active"; ?>"><a href="menu.php">All</a></li>
@@ -27,15 +29,21 @@ $banyakBarang = 0;
       <li class="<?= isset($_GET['kat']) && $_GET['kat'] == "sashimi" ? "active" : ""; ?>"><a href="menu.php?kat=sashimi">Sashimi</a></li>
     </ul>
   </nav>
+  <!-- Side Nav End -->
+
+  <!-- Content Start -->
   <div class="content">
     <!-- Navbar Include -->
     <?php include "templates/navbar.php" ?>
 
+    <!-- Main Menu Start -->
     <div class="main-menu">
+      <!-- Menu List Start -->
       <div class="menu-list">
         <div class="description">
           <p>Menyediakan semua jenis makanan jepang</p>
         </div>
+        <!-- Menu Start -->
         <div class="menu">
           <?php foreach($makanan as $row) : ?>
           <div class="menu-card">
@@ -57,11 +65,16 @@ $banyakBarang = 0;
           </div>
           <?php endforeach; ?>
         </div>
+        <!-- Menu End -->
       </div>
+      <!-- Menu List End -->
+      
+      <!-- Carts Start -->
       <div class="carts">
         <div class="carts-detail">
           <h3>Keranjang Belanja</h3>
           <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+            <!-- Carts Inner Start  -->
             <div class="carts-inner">
               <?php if(empty($keranjang)): ?>
                 <h4 class="empty-carts">Keranjang Masih Kosong</h4>
@@ -87,6 +100,9 @@ $banyakBarang = 0;
                 <?php endforeach; ?>
               <?php endif; ?>
             </div>
+            <!-- Carts Inner End -->
+
+            <!-- Orders Start -->
             <div class="orders">
               <?php 
               $ongkir = 5 / 100 * $subTotal;
@@ -109,6 +125,9 @@ $banyakBarang = 0;
                 <b><?= "Rp " . number_format($total, 0, ',', '.');?></b>
               </div>
             </div>
+            <!-- Orders End -->
+
+            <!-- Orders Submit Start -->
             <div class="orders-submit">
               <?php if($keranjang) : ?>
               <input type="hidden" name="total" value="<?= $total; ?>">
@@ -117,10 +136,15 @@ $banyakBarang = 0;
               <button class="btn btn-yellow order" name="order" type="submit">Pesan</button>
               <?php endif; ?>
             </div>
+            <!-- Orders Submit End -->
           </form>
         </div>
       </div>
+      <!-- Carts End -->
     </div>
+    <!-- Main Menu Start -->
   </div>
+  <!-- Content End -->
 </div>
+<!-- Menu Page End -->
 <?php include "templates/footer.php" ?>

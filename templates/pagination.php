@@ -1,5 +1,6 @@
 <?php function pagination($total_page, $active_page, $href = "?page=") { ?>
-<div class="pagination">
+<?php if ($total_page > 1): ?>
+    <div class="pagination">
     <ul>
         <li>
             <a class="primary-btn" href="<?= ($active_page > 1) ? $href . $active_page - 1 : $href . $active_page ?>">Prev</a>
@@ -20,4 +21,5 @@
         </li>
     </ul>
 </div>
+<?php endif; ?>
 <?php } ?>

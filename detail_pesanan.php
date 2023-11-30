@@ -14,12 +14,18 @@ $total_page = ceil($total_transaksi / $limit);
 $active_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($active_page > 1) ? ($active_page * $limit) - $limit : 0;
 $ordersDetail = getAllOrdersDetailByLimit($id, $limit, $offset);
-$no = ($active_page * $limit) - $limit + 1;
 
+$no = ($active_page * $limit) - $limit + 1;
+$href = "?id=$id&page=";
 ?>
+<!-- Include Navbar -->
 <?php include "templates/navbar.php" ?>
+
+<!-- Content Start -->
 <div class="content">
+    <!-- Detail Pesanan Page Start -->
     <div class="detail-pesanan-page">
+        <!-- Header Start -->
         <div class="header">
             <h1>Detail Pesanan - <?= $id; ?></h1>
             <a class="back" href="pesanan.php">&laquo; Kembali</a>
@@ -28,6 +34,9 @@ $no = ($active_page * $limit) - $limit + 1;
                 <a href="<?= BASEURL . "/libs/excel.php?id=" . $_GET['id']; ?>">Excel</a>
             </div>
         </div>
+        <!-- Header End -->
+
+        <!-- Table Start -->
         <div class="table-style">
             <table>
                 <tr>
@@ -46,27 +55,12 @@ $no = ($active_page * $limit) - $limit + 1;
                 <?php endforeach ?>
             </table>
         </div>
-        <div class="pagination">
-            <ul>
-                <li>
-                    <a class="primary-btn" href="?id=<?= $id; ?>&page=<?= ($active_page > 1) ? $active_page - 1 : $active_page ?>">Prev</a>
-                </li>
-                <?php for ($i = 1; $i <= $total_page; $i++) : ?>
-                    <?php if ($i == $active_page) : ?>
-                        <li>    
-                            <a class="primary-btn active"><?= $i ?></a>
-                        </li>
-                    <?php else : ?>
-                        <li>
-                            <a class="primary-btn" href="?id=<?= $id; ?>&page=<?= $i ?>"><?= $i ?></a>
-                        </li>
-                    <?php endif; ?>
-                <?php endfor; ?>
-                <li>
-                    <a class="primary-btn" href="?id=<?= $id; ?>&page=<?= $active_page < $total_page ? $active_page + 1 : $active_page ?>">Next</a>
-                </li>
-            </ul>
-        </div>
+        <!-- Table End -->
+
+        <!-- Pagination View -->
+        <?php pagination($total_page, $active_page, $href) ?>
     </div>
+    <!-- Detail Pesanan Page End -->
 </div>
+<!-- Content End -->
 <?php include "templates/footer.php" ?>

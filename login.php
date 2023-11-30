@@ -2,11 +2,13 @@
 $title = "Login | JapanFoods";
 $page = "login";
 
+session_start();
 require_once "config/url.php";
 require_once "libs/validate.php";
-session_start();
 
+// Jika sudah ada session login
 if (isset($_SESSION["login"])){
+    // apakah session login pelanggan / administrator / manager 
     if ($_SESSION['login'] == 'pelanggan') {
         header("Location: menu.php");
         exit();
@@ -37,10 +39,13 @@ if (isset($_POST["submit"])){
     <title><?= $title; ?></title>
 </head>
 <body>
+    <!-- COntainer Start -->
     <div class="container">
+        <!-- Content Start -->
         <div class="content middle">
             <div class="login">
                 <h2>Login</h2>
+                <!-- Form Start -->
                 <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username" value="<?= $_POST["username"] ?? '' ?>" autofocus>
@@ -52,8 +57,11 @@ if (isset($_POST["submit"])){
                     <button class="btn btn-yellow submit" type="submit" name="submit">Login</button>
                     <p>Belum punya akun? <span><a href="register.php">Daftar Sekarang</a></span></p>
                 </form>
+                <!-- Form End -->
             </div>
         </div>
+        <!-- Content End -->
     </div>
+    <!-- Container End -->
 </body>
 </html>

@@ -37,10 +37,12 @@ if (isset($_POST['ubah'])) {
 }
 ?>
 
-<!-- Main -->
+<!-- Main Start -->
 <main class="main-container">
   <div class="main-title">
     <h2><?= isset($_GET['ubah']) ? "Ubah Data Makanan" : "Tambah Data Makanan"; ?></h2>
+
+    <!-- Success Alert -->
     <?php 
         if (isset($success) && $success) {
             echo "<div class='form-success'>Data Berhasil $success</div>";
@@ -49,6 +51,7 @@ if (isset($_POST['ubah'])) {
     ?>
   </div>
 
+  <!-- Form Start -->
   <div class="form-content">
     <form action="<?= $_SERVER['PHP_SELF'] . (isset($_GET['ubah']) ? '?ubah=' . $_GET['ubah'] : '') ; ?>" method="post" enctype="multipart/form-data">
       <input type="hidden" name="gambarLama" value="<?= $makanan['GAMBAR_MAKANAN']; ?>">
@@ -102,6 +105,7 @@ if (isset($_POST['ubah'])) {
           </div>
       </div>
 
+      <!-- Action Submit -->
       <div class="input-action">
       <?php if(isset($_GET['ubah'])): ?>
         <button type="submit" name="ubah" class="btn btn-blue"> 
@@ -121,14 +125,16 @@ if (isset($_POST['ubah'])) {
       </div>
     </form>
 
+    <!-- Image Preview -->
     <div class="file-prev">
       <?php $path = $makanan['GAMBAR_MAKANAN'] ? BASEASSET . '/img/menu/' . $makanan['NAMA_KATEGORI'] . '/' . $makanan['GAMBAR_MAKANAN'] : BASEASSET . '/img/menu/no-image.png' ?>
       <h3>Tampilan Gambar</h3>
       <img src="<?= $path ?>" class="img-prev" alt="Gambar Makanan" style="width: 200px;">
     </div>
   </div>
+  <!-- Form End -->
 </main>
-<!-- End Main -->
+<!-- Main End -->
 
 <script>
   function previewImg() {

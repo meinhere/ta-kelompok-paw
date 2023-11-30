@@ -9,6 +9,7 @@ if (isset($_GET['hapus'])) {
   $success = deleteSupplier($_GET['hapus']);
 }
 
+// Mengatur Pagination
 $supplier = getAllSupplier();
 $total_supplier = count($supplier);
 $limit = 10;
@@ -17,14 +18,14 @@ $active_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($active_page > 1) ? ($active_page * $limit) - $limit : 0;
 
 $supplier = getAllSupplierByLimit($limit, $offset);
-
 $no = ($active_page * $limit) - $limit + 1;
 ?>
-
+<!-- Main Start -->
 <main class="main-container">
   <div class="main-title">
     <h2>DATA SUPPLIER</h2>
 
+    <!-- Success Alert -->
     <?php 
         if (isset($success) && $success) {
             echo "<div class='form-success'>Data Berhasil Dihapus</div>";
@@ -38,8 +39,10 @@ $no = ($active_page * $limit) - $limit + 1;
     </a>
   </div>
 
+  <!-- Pagination View -->
   <?php pagination($total_page, $active_page) ?>
   
+  <!-- Table Start -->
   <div class="table-style">
     <table>
       <tr>
@@ -67,5 +70,7 @@ $no = ($active_page * $limit) - $limit + 1;
       <?php endforeach; ?>
     </table>
   </div>
+  <!-- Table End -->
 </main>
+<!-- Main End -->
 <?php include "templates/footer.php" ?>

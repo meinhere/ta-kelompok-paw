@@ -137,7 +137,7 @@ include "templates/header.php";
 
   <!-- Footer Start -->
   <footer>
-    <p>Kelompok 2 TA - Pemrograman Aplikasi Web</p>
+    <p>Kelompok E02 TA - Pemrograman Aplikasi Web</p>
     <p>Copyright &copy; 2023 - Dikembangkan oleh: Tim JapanFoods.</p>
   </footer>
   <!-- Footer End -->
