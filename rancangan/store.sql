@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Nov 2023 pada 03.04
+-- Waktu pembuatan: 30 Nov 2023 pada 07.19
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.4
 
@@ -41,10 +41,10 @@ CREATE TABLE `karyawan` (
 --
 
 INSERT INTO `karyawan` (`ID_KARYAWAN`, `ID_ROLE`, `USERNAME_KARYAWAN`, `PASSWORD_KARYAWAN`, `NAMA_KARYAWAN`, `NO_TELP_KARYAWAN`) VALUES
-(1, 1, 'Sabil', 'b88bee669722c4d019e376cfae43af114a1170802a93cb52da702e41d70299ec', 'Sabil Ahmad Hidayat', '089785867496'),
-(2, 2, 'Dani', 'db96f9a4e73f39c88edd56be2cbd90b2d9aaaaf12e3440ca53d5dc2bb10af29f', 'Syaiful Dani', '082345278654'),
-(3, 2, 'manager1', 'a436a2f49327f56f9a04f68fc8f173ddd18342614a95e980e624da0c949c59e2', 'Manager Pertama', '8123712371'),
-(4, 2, 'manager2', '9adc523d7259770746f60d3854b2401882e6fec482bde883e7a1e406e3beb829', 'Manager Kedua', '192731237');
+(1, 1, 'sabil123', 'ae20ef8d6f7f830ac42d2650f661fb18e0f9ff0a551a01a6356ef1a0c74798bf', 'Sabil Ahmad Hidayat', '81276492819'),
+(2, 1, 'star993', 'e4bee8699d14227d5d58ef72b593233c152b1572013a8ddb8b2d6bd3b6bdc505', 'Bintang Widya Narendra', '82143759812'),
+(3, 2, 'dani123', '70bd1dd456a16d9bfd51867dc1fe5182b3b53646ebd4832232ebc29cdcd7775e', 'Syaiful Rochmandani', '82634193561'),
+(4, 2, 'rizky123', 'e14861dc3764d3f687da6f3a323d642cc6be4dd4e6ab55c3980f25913e4c591a', 'Rizkyan Dwi Prasetiawan', '81352957410');
 
 -- --------------------------------------------------------
 
@@ -82,15 +82,6 @@ CREATE TABLE `keranjang` (
   `UPDATE_AT_M` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `keranjang`
---
-
-INSERT INTO `keranjang` (`ID_PELANGGAN`, `KODE_MAKANAN`, `QTY`, `CREATED_AT_K`, `UPDATE_AT_M`) VALUES
-(1, 3, 1, '2023-11-22 16:35:29', '2023-11-22 16:35:29'),
-(1, 5, 1, '2023-11-22 16:35:31', '2023-11-22 16:35:31'),
-(1, 14, 1, '2023-11-22 16:35:37', '2023-11-22 16:35:37');
-
 -- --------------------------------------------------------
 
 --
@@ -114,13 +105,12 @@ CREATE TABLE `makanan` (
 --
 
 INSERT INTO `makanan` (`KODE_MAKANAN`, `ID_SUPPLIER`, `KODE_KATEGORI`, `NAMA_MAKANAN`, `GAMBAR_MAKANAN`, `HARGA_MAKANAN`, `STOK_PRODUK`, `CREATED_AT_M`, `UPDATE_AT_M`) VALUES
-(1, 1, 1, 'Miso Ramen', 'miso.png', 40000, 100, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(2, 1, 1, 'Shio Ramen', 'shio.png', 50000, 77, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(3, 1, 1, 'Shoyu Ramen', 'shoyu.png', 43000, 46, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(4, 1, 1, 'Tantan Ramen', 'tantan.png', 45000, 30, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(5, 1, 1, 'Tonkotsu Ramen', 'tonkotsu.png', 44000, 53, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(6, 1, 1, 'Tsukemen', 'tsukemen.png', 52000, 48, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(7, 2, 2, 'Chirashi Sushi', 'chirashi.png', 50000, 55, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(1, 1, 1, 'Miso Ramen', 'miso.png', 40000, 98, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(2, 1, 1, 'Shio Ramen', 'shio.png', 50000, 69, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(3, 1, 1, 'Shoyu Ramen', 'shoyu.png', 43000, 7, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(4, 1, 1, 'Tantan Ramen', 'tantan.png', 45000, 28, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(5, 1, 1, 'Tonkotsu Ramen', 'tonkotsu.png', 44000, 47, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(6, 1, 1, 'Tsukemen', 'tsukemen.png', 52000, 35, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (8, 2, 2, 'Futomaki Sushi', 'futomaki.png', 45000, 100, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (9, 2, 2, 'Gunkan Sushi', 'gunkan.png', 47000, 70, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (10, 2, 2, 'Inarizushi Sushi', 'inarizushi.png', 43000, 90, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
@@ -130,8 +120,8 @@ INSERT INTO `makanan` (`KODE_MAKANAN`, `ID_SUPPLIER`, `KODE_KATEGORI`, `NAMA_MAK
 (14, 2, 2, 'Temaki Sushi', 'temaki.png', 45000, 67, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (15, 2, 2, 'Uramaki Sushi', 'uramaki.png', 50000, 72, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (16, 3, 3, 'Mentaiko Onigiri', 'mentaiko.png', 20000, 50, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(17, 3, 3, 'Kombu Onigiri', 'kombu.png', 23000, 40, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(18, 3, 3, 'Okaka Onigiri', 'okaka.png', 26000, 65, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(17, 3, 3, 'Kombu Onigiri', 'kombu.png', 23000, 37, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(18, 3, 3, 'Okaka Onigiri', 'okaka.png', 26000, 64, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (19, 3, 3, 'Salmon Onigiri', 'salmon.png', 30000, 77, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (20, 3, 3, 'Tarako Onigiri', 'tarako.png', 22000, 62, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (21, 3, 3, 'Tuna Mayo Onigiri', 'tuna-mayo.png', 32000, 45, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
@@ -142,12 +132,12 @@ INSERT INTO `makanan` (`KODE_MAKANAN`, `ID_SUPPLIER`, `KODE_KATEGORI`, `NAMA_MAK
 (26, 3, 4, 'Tempura Udon', 'tempura.png', 75000, 60, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (27, 3, 4, 'Tororo Udon', 'tororo.png', 80000, 85, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (28, 3, 4, 'Tsukimi Udon', 'tsukimi.png', 650000, 90, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(29, 2, 5, 'Hirame Udon', 'hirame.png', 100000, 99, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(30, 2, 5, 'Hamachi', 'hamachi.png', 12000, 100, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(31, 2, 5, 'Katsuo', 'katsuo.png', 12500, 110, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(32, 2, 5, 'Maguro', 'maguro.png', 15000, 88, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(29, 2, 5, 'Hirame Udon', 'hirame.png', 100000, 95, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(30, 2, 5, 'Hamachi', 'hamachi.png', 12000, 96, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(31, 2, 5, 'Katsuo', 'katsuo.png', 12500, 108, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
+(32, 2, 5, 'Maguro', 'maguro.png', 15000, 87, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
 (33, 2, 5, 'Saba', 'saba.png', 95000, 150, '0000-00-00 00:00:00', '2023-11-17 04:18:31'),
-(34, 2, 5, 'Sake', 'sake.png', 145000, 130, '0000-00-00 00:00:00', '2023-11-17 04:18:31');
+(34, 2, 5, 'Sake', 'sake.png', 145000, 129, '0000-00-00 00:00:00', '2023-11-17 04:18:31');
 
 -- --------------------------------------------------------
 
@@ -167,11 +157,14 @@ CREATE TABLE `metode_bayar` (
 --
 
 INSERT INTO `metode_bayar` (`ID_METODE`, `ID_PELANGGAN`, `NAMA_METODE`, `NO_REKENING`) VALUES
-(1, 1, 'Rekening BRI', '8123712631'),
-(1, 2, 'Rekening BRI', '8712631231'),
+(1, 1, 'Rekening BRI', '12378171'),
+(1, 2, 'Rekening BRI', '912831237'),
+(1, 3, 'Rekening BRI', '123123'),
 (2, 1, 'Rekening BCA', '9012312311'),
-(3, 1, 'Digital DANA', '81237123'),
-(3, 2, 'Digital DANA', '1621763511');
+(2, 4, 'Rekening BCA', '81293217'),
+(3, 2, 'Digital DANA', '123213213'),
+(3, 4, 'Digital DANA', '12931222'),
+(4, 2, 'Digital OVO', '123712312');
 
 -- --------------------------------------------------------
 
@@ -194,11 +187,11 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`ID_PELANGGAN`, `USERNAME_PELANGGAN`, `PASSWORD_PELANGGAN`, `NAMA_PELANGGAN`, `NO_TELP_PELANGGAN`, `ALAMAT_PELANGGAN`, `JENIS_KELAMIN`) VALUES
-(1, 'alpa123', '87452615c17657253822444abd4d4873991fc1416bae5792f23cb1a813820ad2', 'Alpa Ruins', '8123172361', 'Jalan Petirihan 16, Sumenep', 'L'),
-(2, 'beta123', '684aa4d02903f1a7ae65a4afdd93beacadc13690ee18f328a6434324f5c57a8c', 'Beta Rose', '8127312361', 'Jalan Tegal Barat 3, Bandung', 'P'),
-(3, 'carli123', '9598506d3c00f03ae256d4856e6197e07e41f1891f06c8b3e193df72e47aa1bc', 'Carli Merialdi', '1982310238', 'Jalan Batu Merah Jambu 10, Jambi', 'L'),
-(4, 'delta123', '69d7a0ba334b8d3f21b51870776aabaa511bc5c44b049cdfd34d82d9b753625c', 'Delta Ria', '192310238', 'Jalan Ujung Tembok 9, Surabaya', 'P'),
-(5, 'ema123', '81ab615d6c998480899f22544666ac3332bb5cd9542ae979a839f7f43f125214', 'Ema Perlanto', '123123123', 'Jalan Putih Abu 12, Pati', 'P');
+(1, 'alpa123', '4c6f62976457dcc9b65bfd1f6a27e1bcd860abf626987d527b6e644422927c89', 'Alpa Ruins', '8123172361', 'Jalan Petirihan 16, Sumenep', 'L'),
+(2, 'beta123', '7b4eb297e64e2392401880b09662f0095fdaabd0c1afb3e74d2866dc099d1988', 'Beta Rose', '8127312361', 'Jalan Tegal Barat 3, Bandung', 'P'),
+(3, 'carli123', 'd30849bf129d9a02959932d0e39b8546aaa447c7b1ca79ff717d850a23b874ca', 'Carli Merialdi', '1982310238', 'Jalan Batu Merah Jambu 10, Jambi', 'L'),
+(4, 'delta123', 'ce9fafaec9daa37718a414689f2993d12771a49d35389277fc4cd5e92e35e67b', 'Delta Ria', '192310238', 'Jalan Ujung Tembok 9, Surabaya', 'P'),
+(5, 'ema123', '91e8c110f85818cc3181a8e7d247f3e79991060ac197b786e6a51870a4005548', 'Ema Perlanto', '123123123', 'Jalan Putih Abu 12, Pati', 'P');
 
 -- --------------------------------------------------------
 
@@ -237,9 +230,10 @@ CREATE TABLE `supplier` (
 --
 
 INSERT INTO `supplier` (`ID_SUPPLIER`, `NAMA_SUPPLIER`, `NO_TELP_SUPPLIER`, `ALAMAT_SUPPLIER`) VALUES
-(1, 'RamenKu\r\n', '081233527891', 'Tanggerang'),
-(2, 'ShusiStar', '081232768991', 'Bandung'),
-(3, 'Marugame Restourant', '084599778930', 'Nganjuk');
+(1, 'RamenKu', '8721361232', 'Surabaya'),
+(2, 'HamachiRuko', '7128371236', 'Mojokerto'),
+(3, 'SushiStar', '6125361235123', 'Nganjuk'),
+(6, 'Juironesha', '1923812371', 'Blitar');
 
 -- --------------------------------------------------------
 
@@ -262,8 +256,25 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`KODE_TRANSAKSI`, `ID_PELANGGAN`, `TANGGAL_PESAN`, `TOTAL`, `STATUS`, `WAKTU_BAYAR`, `METODE_BAYAR`) VALUES
-(1, 1, '2023-11-22 23:33:28', 240450, 0, NULL, NULL),
-(2, 3, '2023-11-23 22:27:18', 99750, 0, NULL, NULL);
+(1, 1, '2023-11-22 23:33:28', 240450, 1, '2023-11-27 21:08:02', NULL),
+(2, 3, '2023-11-23 22:27:18', 99750, 0, NULL, NULL),
+(3, 1, '2023-11-24 18:56:03', 284550, 1, '2023-11-24 18:56:51', NULL),
+(4, 1, '2023-11-24 19:03:09', 208950, 0, NULL, NULL),
+(5, 1, '2023-11-27 20:55:10', 152250, 0, NULL, NULL),
+(7, 1, '2023-11-27 21:06:38', 143850, 1, '2023-11-27 21:08:21', NULL),
+(8, 2, '2023-11-27 21:12:22', 546000, 1, '2023-11-27 21:12:27', NULL),
+(9, 2, '2023-11-27 21:12:42', 829500, 0, NULL, NULL),
+(10, 4, '2023-11-27 21:13:12', 319200, 1, '2023-11-27 21:13:49', NULL),
+(11, 4, '2023-11-27 21:13:27', 601650, 0, NULL, NULL),
+(12, 4, '2023-11-27 21:14:27', 911400, 0, NULL, NULL),
+(13, 4, '2023-11-27 21:14:44', 93450, 0, NULL, NULL),
+(14, 3, '2023-11-27 21:18:15', 160650, 0, NULL, NULL),
+(15, 3, '2023-11-27 21:18:34', 135450, 0, NULL, NULL),
+(16, 3, '2023-11-27 21:18:58', 187950, 0, NULL, NULL),
+(17, 1, '2023-11-28 16:10:46', 99750, 0, NULL, NULL),
+(18, 1, '2023-11-28 16:11:07', 182700, 0, NULL, NULL),
+(19, 1, '2023-11-28 21:09:18', 152250, 1, '2023-11-28 21:12:48', NULL),
+(23, 1, '2023-11-30 12:40:59', 154350, 1, '2023-11-30 12:41:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -286,7 +297,75 @@ INSERT INTO `transaksi_detail` (`KODE_TRANSAKSI`, `KODE_MAKANAN`, `HARGA_MAKANAN
 (1, 2, 50000, 2),
 (1, 3, 43000, 3),
 (2, 3, 43000, 1),
-(2, 6, 52000, 1);
+(2, 6, 52000, 1),
+(3, 3, 43000, 1),
+(3, 5, 44000, 4),
+(3, 6, 52000, 1),
+(4, 3, 43000, 1),
+(4, 6, 52000, 3),
+(5, 2, 50000, 1),
+(5, 3, 43000, 1),
+(5, 6, 52000, 1),
+(7, 1, 40000, 1),
+(7, 4, 45000, 1),
+(7, 6, 52000, 1),
+(8, 6, 52000, 1),
+(8, 17, 23000, 3),
+(8, 18, 26000, 1),
+(8, 29, 100000, 3),
+(8, 30, 12000, 4),
+(8, 31, 12500, 2),
+(9, 24, 60000, 1),
+(9, 27, 80000, 1),
+(9, 28, 650000, 1),
+(10, 5, 44000, 1),
+(10, 29, 100000, 1),
+(10, 32, 15000, 1),
+(10, 34, 145000, 1),
+(11, 8, 45000, 1),
+(11, 10, 43000, 1),
+(11, 11, 55000, 1),
+(11, 13, 430000, 1),
+(12, 9, 47000, 1),
+(12, 10, 43000, 1),
+(12, 11, 55000, 1),
+(12, 12, 50000, 1),
+(12, 13, 430000, 1),
+(12, 17, 23000, 1),
+(12, 18, 26000, 1),
+(12, 19, 30000, 1),
+(12, 20, 22000, 1),
+(12, 21, 32000, 1),
+(12, 32, 15000, 1),
+(12, 33, 95000, 1),
+(13, 1, 40000, 1),
+(13, 17, 23000, 1),
+(13, 18, 26000, 1),
+(14, 10, 43000, 1),
+(14, 11, 55000, 1),
+(14, 17, 23000, 1),
+(14, 21, 32000, 1),
+(15, 5, 44000, 1),
+(15, 17, 23000, 1),
+(15, 19, 30000, 1),
+(15, 21, 32000, 1),
+(16, 16, 20000, 1),
+(16, 22, 19000, 1),
+(16, 24, 60000, 1),
+(16, 27, 80000, 1),
+(17, 16, 20000, 1),
+(17, 17, 23000, 1),
+(17, 19, 30000, 1),
+(17, 20, 22000, 1),
+(18, 8, 45000, 1),
+(18, 9, 47000, 1),
+(18, 12, 50000, 1),
+(18, 21, 32000, 1),
+(19, 2, 50000, 1),
+(19, 3, 43000, 1),
+(19, 6, 52000, 1),
+(23, 3, 43000, 1),
+(23, 6, 52000, 2);
 
 --
 -- Indexes for dumped tables
@@ -379,7 +458,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT untuk tabel `makanan`
 --
 ALTER TABLE `makanan`
-  MODIFY `KODE_MAKANAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `KODE_MAKANAN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT untuk tabel `pelanggan`
@@ -397,13 +476,13 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT untuk tabel `supplier`
 --
 ALTER TABLE `supplier`
-  MODIFY `ID_SUPPLIER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_SUPPLIER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `KODE_TRANSAKSI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `KODE_TRANSAKSI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

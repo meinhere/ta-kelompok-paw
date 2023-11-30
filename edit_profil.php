@@ -84,7 +84,7 @@ if (isset($_POST["bri"])) {
         <div class="input-group">
             <label for="password2">Konfirmasi Password</label>
             <div class="err-group">
-                <input type="password" id="password2" name="password2" value="<?= $_POST['password2'] ?? ""; ?>">
+                <input type="password" id="password2" name="password2">
                 <span class="errForm"><?= ($errors['password2Err'] ?? ''); ?></span>
             </div>
         </div>

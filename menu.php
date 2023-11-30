@@ -7,7 +7,8 @@ require_once "data/menu.php";
 if (isset($_POST['tambah'])) insertCarts($_POST['kode_makanan']); // tambah makanan pada keranjang
 if (isset($_GET['del'])) deleteCartsByKode($_GET['del']); // hapus makanan berdasarkan kode 
 if (isset($_POST['reset'])) deleteAllCarts(); // hapus semua makanan pada keranjang
-if (isset($_POST['save'])) editCarts($_POST); // edit makanan pada keranjang
+if (isset($_POST['min'])) editCarts($_POST); // edit makanan pada keranjang
+if (isset($_POST['plus'])) editCarts($_POST); // edit makanan pada keranjang
 if (isset($_POST['order'])) insertOrders($_POST); // tambah makanan pada pesanan
 
 $makanan = isset($_GET['kat']) ? getAllMenuByCategory($_GET['kat']) : getAllMenu();
@@ -82,15 +83,16 @@ $banyakBarang = 0;
                 <?php foreach ($keranjang as $row) : ?>
                 <div class="carts-item">
                   <input type="hidden" name="kode_makanan[]" value="<?= $row['KODE_MAKANAN']; ?>">
+                  <input type="hidden" name="qty[]" value="<?= $row['QTY']; ?>">
                   <input type="hidden" name="harga_makanan[]" value="<?= $row['HARGA_MAKANAN']; ?>">
 
                   <img src="<?= BASEASSET . "/img/menu/" . $row['NAMA_KATEGORI'] . "/" . $row['GAMBAR_MAKANAN']; ?>" alt="<?= $row['NAMA_MAKANAN']; ?>" class="image" />
                   <div class="detail">
                     <h5><?= $row['NAMA_MAKANAN']; ?></h5>
                     <div class="action">
-                      <button class="min" type="button" onclick="btnMinusOrder(this.nextElementSibling)">-</button>
-                      <input type="text" value="<?= $row['QTY']; ?>" data-stok="<?= $row['STOK_PRODUK']; ?>" name="qty[]" class="qty" readonly>
-                      <button class="plus" type="button" onclick="btnPlusOrder(this.previousElementSibling)">+</button>
+                      <button class="min" type="submit" name="min" value="<?= $row['KODE_MAKANAN']; ?>">-</button>
+                      <span class="qty"><?= $row['QTY']; ?></span>
+                      <button class="plus" type="submit" name="plus" value="<?= $row['KODE_MAKANAN']; ?>">+</button>
                       <a href="menu.php?del=<?= $row['KODE_MAKANAN']; ?>" class="remove">Hapus</a>
                     </div>
                   </div>
@@ -131,7 +133,6 @@ $banyakBarang = 0;
             <div class="orders-submit">
               <?php if($keranjang) : ?>
               <input type="hidden" name="total" value="<?= $total; ?>">
-              <button class="btn btn-green save" name="save" type="submit">Simpan</button>
               <button class="btn btn-yellow-secondary reset" name="reset" type="submit">Hapus Semua</button>
               <button class="btn btn-yellow order" name="order" type="submit">Pesan</button>
               <?php endif; ?>

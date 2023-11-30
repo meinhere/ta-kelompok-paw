@@ -12,23 +12,3 @@ window.onscroll = function () {
   }
 };
 
-/**** Count Order Button Event ****/
-// Button Plus
-const btnPlusOrder = (e) => {
-  let qty = e.value;
-  let sisa_stok = e.parentElement.lastElementChild;
-  const stok = e.dataset.stok;
-  qty++;
-  if (qty < stok && qty <= 10) e.value = qty;
-  if (sisa_stok) sisa_stok.value = stok - qty;
-};
-
-// Button Minus
-const btnMinusOrder = (e) => {
-  let qty = e.value;
-  let sisa_stok = e.parentElement.lastElementChild;
-  const stok = e.dataset.stok;
-  qty--;
-  if (qty >= 1) e.value = qty;
-  if (sisa_stok) sisa_stok.value = stok - qty;
-};
