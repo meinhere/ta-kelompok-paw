@@ -48,10 +48,10 @@ if (isset($_POST["submit"])){
                 <!-- Form Start -->
                 <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
                     <label for="username">Username</label>
-                    <input type="text" name="username" id="username" value="<?= $_POST["username"] ?? '' ?>" autofocus>
+                    <input type="text" name="username" id="username" value="<?= $_POST["username"] ?? '' ?>">
                     <span class="errorlogin"><?= $error["username"] ?? '' ?></span>
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" value="<?= $_POST["password"] ?? '' ?>">
+                    <input type="password" name="password" id="password">
                     <span class="errorlogin"><?= $error["password"] ?? ''?></span>
                     <br>
                     <button class="btn btn-yellow submit" type="submit" name="submit">Login</button>

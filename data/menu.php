@@ -41,8 +41,9 @@ function getAllMenuByCategory($kategori) {
 
 function getMenuByKode($kode_makanan) {
   try{
-		$statement = DB->prepare("SELECT KODE_MAKANAN, NAMA_MAKANAN, HARGA_MAKANAN, STOK_PRODUK, GAMBAR_MAKANAN, makanan.KODE_KATEGORI, NAMA_KATEGORI, ID_SUPPLIER FROM makanan INNER JOIN kategori ON makanan.KODE_KATEGORI = kategori.KODE_KATEGORI WHERE KODE_MAKANAN = :kode_makanan ");
-    $statement->bindValue(":kode_makanan", intval($kode_makanan));
+		$statement = DB->prepare("SELECT m.KODE_MAKANAN, NAMA_MAKANAN, HARGA_MAKANAN, STOK_PRODUK, GAMBAR_MAKANAN, m.KODE_KATEGORI, NAMA_KATEGORI, ID_SUPPLIER FROM makanan m 
+		INNER JOIN kategori ka ON m.KODE_KATEGORI = ka.KODE_KATEGORI WHERE m.KODE_MAKANAN = :kode_makanan ");
+    $statement->bindValue(":kode_makanan", $kode_makanan);
 		$statement->execute();
 		return $statement->fetch(PDO::FETCH_ASSOC);
 	}
@@ -154,6 +155,18 @@ function getAllCarts()  {
 	}
 }
 
+function getCartByKode($kode_makanan) {
+	try{
+		$statement = DB->prepare("SELECT * FROM keranjang WHERE KODE_MAKANAN = :kode_makanan ");
+    $statement->bindValue(":kode_makanan", $kode_makanan);
+		$statement->execute();
+		return $statement->fetch(PDO::FETCH_ASSOC);
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+	}
+}
+
 function insertCarts($kode_makanan) {
 	try{
 		$statement = DB->prepare("INSERT INTO keranjang(ID_PELANGGAN, KODE_MAKANAN, QTY) VALUES (:id_pelanggan, :kode_makanan, :qty)");
@@ -193,16 +206,26 @@ function deleteAllCarts() {
 }
 
 function editCarts($data) {
-	$kode_makanan = $data['kode_makanan'];
-	$qty = $data['qty'];
+	$makanan = isset($data['min']) ? getMenuByKode($data['min']) : getMenuByKode($data['plus']);
+	$kode_makanan = $makanan['KODE_MAKANAN'];
+	$stok = $makanan['STOK_PRODUK'];
+	$qty = getCartByKode($kode_makanan);
+	$qty = $qty['QTY'];
+
 	try{
-		for ($i = 0; $i < count($kode_makanan); $i++) {
-			$statement = DB->prepare("UPDATE keranjang SET QTY = :qty WHERE ID_PELANGGAN = :id_pelanggan AND KODE_MAKANAN = :kode_makanan");
-			$statement->bindValue(':id_pelanggan', $_SESSION['id_pelanggan']);
-			$statement->bindValue(':kode_makanan', $kode_makanan[$i]);
-			$statement->bindValue(':qty',$qty[$i]);
-			$statement->execute();
+		$statement = DB->prepare("UPDATE keranjang SET QTY = :qty WHERE ID_PELANGGAN = :id_pelanggan AND KODE_MAKANAN = :kode_makanan");
+		$statement->bindValue(':id_pelanggan', $_SESSION['id_pelanggan']);
+		$statement->bindValue(':kode_makanan', $kode_makanan);
+		
+		if ($qty > 1 && isset($data['min'])) {
+			$statement->bindValue(':qty', $qty - 1);
+		} else if ($qty <= 10 && $qty < $stok && isset($data['plus'])) {
+			$statement->bindValue(':qty', $qty + 1);
+		} else {
+			$statement->bindValue(':qty', $qty);
 		}
+		
+		$statement->execute();
 		header("Location: " . $_SERVER['HTTP_REFERER']);
 	}
 	catch(PDOException $err){

@@ -59,7 +59,7 @@ if (isset($_POST["submit"])) {
                     ?>
 
                     <label for="nama">Nama</label>
-                    <input type="text" name="nama" id="nama" value="<?= $_POST['nama'] ?? "" ?>" autofocus>
+                    <input type="text" name="nama" id="nama" value="<?= $_POST['nama'] ?? "" ?>">
                     <span class="errForm">
                         <?= ($errors['nameErr'] ?? ''); ?>
                     </span>
@@ -70,14 +70,12 @@ if (isset($_POST["submit"])) {
                         <?= ($errors['usernameErr'] ?? ''); ?>
                     </span>
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password"
-                        value="<?= $_POST['password'] ?? "" ?>">
+                    <input type="password" name="password" id="password" value="<?= $_POST['password'] ?? "" ?>">
                     <span class="errForm">
                         <?= ($errors['passwordErr'] ?? ''); ?>
                     </span>
                     <label for="password2">Konfirmasi Password</label>
-                    <input type="password" name="password2" id="password2"
-                        value="<?= $_POST['password2'] ?? "" ?>">
+                    <input type="password" name="password2" id="password2">
                     <span class="errForm">
                         <?= ($errors['password2Err'] ?? ''); ?>
                     </span>
