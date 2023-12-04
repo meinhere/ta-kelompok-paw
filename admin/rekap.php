@@ -6,9 +6,9 @@ include "templates/header.php";
 require_once BASEPATH . "/data/transaksi.php";
 
 // Untuk filter 
-if (isset($_POST['tahun'])) {
-  $year = $_POST['tahun']; // mengambil tahun yang diinputkan dalam filter
-  $month = $_POST['bulan']; // mengambil bulang yang diinputkan dalam filter
+if (isset($_GET['tahun'])) {
+  $year = $_GET['tahun']; // mengambil tahun yang diinputkan dalam filter
+  $month = $_GET['bulan']; // mengambil bulang yang diinputkan dalam filter
 } else {
   $year = date("Y"); // mengambil tahun sekarang
   $month = date("m"); // mengambil bulan sekarang
@@ -74,7 +74,12 @@ if (isset($_GET['tunda'])) {
 }
 
 $no = ($active_page * $limit) - $limit + 1;
-$href = isset($_GET['tunda']) ? "?tunda&page=" : "?page="; // href untuk pagination
+// href untuk pagination
+if (isset($_GET['tunda'])) {
+  $href = isset($_GET['tahun']) ? "?tunda=1&bulan=" . $_GET['bulan'] . "&tahun=" . $_GET['tahun'] . "&page=" : "?tunda=1&page=";
+} else {
+  $href = isset($_GET['tahun']) ? "?bulan=" . $_GET['bulan'] . "&tahun=" . $_GET['tahun'] . "&page=" : "?page=";
+}
 ?>
 <main class="main-container">
   <div class="main-title">
@@ -83,7 +88,8 @@ $href = isset($_GET['tunda']) ? "?tunda&page=" : "?page="; // href untuk paginat
 
   <div class="filter-orders">
     <h3>Filter Transaksi</h3>
-    <form action="<?= $_SERVER['REQUEST_URI']; ?>" method="post">
+    <form action="<?= $_SERVER['PHP_SELF']; ?>" method="get">
+      <input type="hidden" <?= isset($_GET['tunda']) ? "name='tunda' value='1'" : ""; ?>>
       <div class="input-group">
         <label for="bulan">Bulan</label>
         <select class="select-box" name="bulan" id="bulan">

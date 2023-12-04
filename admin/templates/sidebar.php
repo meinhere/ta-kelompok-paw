@@ -50,7 +50,7 @@
       </a>
     </li>
     <li class="sidebar-list-item <?= ($page=="bb") ? "active" : ""; ?>">
-      <a href="rekap.php?tunda">
+      <a href="rekap.php?tunda=1">
         <span><i class="fa fa-clock-o"></i></span>
         Belum Bayar
       </a>
