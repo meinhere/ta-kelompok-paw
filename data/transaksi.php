@@ -108,12 +108,18 @@ function getAllOrders() {
 
 function getAllOrdersByDate($status, $date_awal, $date_akhir) {
 	try{
-		$statement = DB->prepare("SELECT * FROM transaksi t 
-		INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
-		WHERE t.STATUS = :status AND t.TANGGAL_PESAN BETWEEN :date_awal AND :date_akhir ORDER BY t.TANGGAL_PESAN ASC");
+		if (!$date_awal && !$date_akhir) {
+			$statement = DB->prepare("SELECT * FROM transaksi t 
+			INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
+			WHERE t.STATUS = :status");
+		} else {
+			$statement = DB->prepare("SELECT * FROM transaksi t 
+			INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
+			WHERE t.STATUS = :status AND t.TANGGAL_PESAN BETWEEN :date_awal AND :date_akhir ORDER BY t.TANGGAL_PESAN ASC");
+			$statement->bindValue(':date_awal', "$date_awal 00:00:01");
+			$statement->bindValue(':date_akhir', "$date_akhir 23:59:59");
+		}
 		$statement->bindValue(':status', $status);
-		$statement->bindValue(':date_awal', "$date_awal 00:00:01");
-		$statement->bindValue(':date_akhir', "$date_akhir 23:59:59");
 		$statement->execute();
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -150,14 +156,21 @@ function editOrders($kode_transaksi, $data) {
 
 function getAllOrdersByDateAndLimit($status, $date_awal, $date_akhir, $limit, $offset) {
 	try{
-		$statement = DB->prepare("SELECT * FROM transaksi t 
-		INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
-		WHERE t.STATUS = :status AND t.TANGGAL_PESAN BETWEEN :date_awal AND :date_akhir ORDER BY t.TANGGAL_PESAN DESC LIMIT :limit OFFSET :offset");
+		if (!$date_awal && !$date_akhir) {
+			$statement = DB->prepare("SELECT * FROM transaksi t 
+			INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
+			WHERE t.STATUS = :status ORDER BY t.TANGGAL_PESAN DESC LIMIT :limit OFFSET :offset");
+		} else {
+			$statement = DB->prepare("SELECT * FROM transaksi t 
+			INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
+			WHERE t.STATUS = :status AND t.TANGGAL_PESAN BETWEEN :date_awal AND :date_akhir ORDER BY t.TANGGAL_PESAN DESC LIMIT :limit OFFSET :offset");
+			$statement->bindValue(':date_awal', "$date_awal 00:00:01");
+			$statement->bindValue(':date_akhir', "$date_akhir 23:59:59");	
+		}
+
 		$statement->bindValue(':status', $status);
 		$statement->bindParam(':limit', $limit, PDO::PARAM_INT);
 		$statement->bindParam(':offset', $offset, PDO::PARAM_INT);
-		$statement->bindValue(':date_awal', "$date_awal 00:00:01");
-		$statement->bindValue(':date_akhir', "$date_akhir 23:59:59");
 		$statement->execute();
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
