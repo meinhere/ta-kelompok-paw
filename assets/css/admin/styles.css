@@ -174,9 +174,6 @@
   background-color: var(--slate);
   box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.2);
 }
-.form-content form {
-  width: 55%;
-}
 .form-content .file-prev {
   height: 30%;
   text-align: center;
@@ -250,5 +247,9 @@
   .charts {
     grid-template-columns: 1fr;
     margin-top: 30px;
+  }
+
+  .form-content {
+    flex-wrap: wrap;
   }
 }
