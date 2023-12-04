@@ -6,15 +6,14 @@ include "templates/header.php";
 require_once BASEPATH . "/data/transaksi.php";
 
 // Untuk filter 
-if (isset($_GET['tahun'])) {
-  $year = $_GET['tahun']; // mengambil tahun yang diinputkan dalam filter
-  $month = $_GET['bulan']; // mengambil bulang yang diinputkan dalam filter
+if (isset($_GET['tanggal_mulai'])) {
+  $tanggal_mulai = $_GET['tanggal_mulai']; // mengambil tahun yang diinputkan dalam filter
+  $tanggal_akhir = $_GET['tanggal_akhir']; // mengambil bulan yang diinputkan dalam filter
 } else {
-  $year = date("Y"); // mengambil tahun sekarang
-  $month = date("m"); // mengambil bulan sekarang
+  $tanggal_mulai = null;
+  $tanggal_akhir = null;
 }
 
-$last_date = cal_days_in_month(CAL_GREGORIAN, $month, $year); // mengambil hari terakhir dalam bulan tsb
 $total_harga = 0;
 $label_chart = [];
 $value_chart = [];
@@ -22,7 +21,7 @@ $value_chart = [];
 // Rekapan belum dibayar
 if (isset($_GET['tunda'])) {
   // Untuk mengambil semua transaksi dalam satu bulan
-  $transaksi = getAllOrdersByDate(0, "$year-$month-1", "$year-$month-$last_date");
+  $transaksi = getAllOrdersByDate(0, $tanggal_mulai, $tanggal_akhir);
 
   // Untuk mengambil tanggal transaksi per hari 
   foreach ($transaksi as $row) {
@@ -45,9 +44,9 @@ if (isset($_GET['tunda'])) {
   $active_page = isset($_GET['page']) ? $_GET['page'] : 1;
   $offset = ($active_page > 1) ? ($active_page * $limit) - $limit : 0;
   
-  $transaksi = getAllOrdersByDateAndLimit(0, "$year-$month-1", "$year-$month-$last_date", $limit, $offset);
+  $transaksi = getAllOrdersByDateAndLimit(0, $tanggal_mulai, $tanggal_akhir, $limit, $offset);
 } else {
-  $transaksi = getAllOrdersByDate(1, "$year-$month-1", "$year-$month-$last_date");
+  $transaksi = getAllOrdersByDate(1, $tanggal_mulai, $tanggal_akhir);
 
   // Untuk mengambil tanggal transaksi per hari 
   foreach ($transaksi as $row) {
@@ -70,15 +69,15 @@ if (isset($_GET['tunda'])) {
   $active_page = isset($_GET['page']) ? $_GET['page'] : 1;
   $offset = ($active_page > 1) ? ($active_page * $limit) - $limit : 0;
 
-  $transaksi = getAllOrdersByDateAndLimit(1, "$year-$month-1", "$year-$month-$last_date", $limit, $offset);
+  $transaksi = getAllOrdersByDateAndLimit(1, $tanggal_mulai, $tanggal_akhir, $limit, $offset);
 }
 
 $no = ($active_page * $limit) - $limit + 1;
 // href untuk pagination
 if (isset($_GET['tunda'])) {
-  $href = isset($_GET['tahun']) ? "?tunda=1&bulan=" . $_GET['bulan'] . "&tahun=" . $_GET['tahun'] . "&page=" : "?tunda=1&page=";
+  $href = isset($_GET['tanggal_akhir']) ? "?tunda=1&tanggal_mulai=" . $_GET['tanggal_mulai'] . "&tanggal_akhir=" . $_GET['tanggal_akhir'] . "&page=" : "?tunda=1&page=";
 } else {
-  $href = isset($_GET['tahun']) ? "?bulan=" . $_GET['bulan'] . "&tahun=" . $_GET['tahun'] . "&page=" : "?page=";
+  $href = isset($_GET['tanggal_akhir']) ? "?tanggal_mulai=" . $_GET['tanggal_mulai'] . "&tanggal_akhir=" . $_GET['tanggal_akhir'] . "&page=" : "?page=";
 }
 ?>
 <main class="main-container">
@@ -91,22 +90,13 @@ if (isset($_GET['tunda'])) {
     <form action="<?= $_SERVER['PHP_SELF']; ?>" method="get">
       <input type="hidden" <?= isset($_GET['tunda']) ? "name='tunda' value='1'" : ""; ?>>
       <div class="input-group">
-        <label for="bulan">Bulan</label>
-        <select class="select-box" name="bulan" id="bulan">
-          <?php for($i = 1; $i <= 12; $i++) : ?>
-          <?php $text = $i < 10 ? "0" . (string)$i : $i ?>
-          <option value="<?= $text; ?>" <?= ($month == $text) ? "selected" : ""; ?>><?= date('F', mktime(0, 0, 0, $i, 1)); ?></option>
-          <?php endfor; ?>
+        <label for="bulan">Dari</label>
+        <input type="date" name="tanggal_mulai" value="<?= $_GET['tanggal_mulai'] ?? ''; ?>">
         </select>
       </div>
       <div class="input-group">
-        <label for="tahun">Tahun</label>
-        <select class="select-box" name="tahun" id="tahun">
-            <?php for ($i = 0; $i < 4; $i++): ?>
-              <?php $text = date('Y', strtotime("-$i year")); ?>
-              <option value="<?= $text; ?>" <?= ($year == $text) ? "selected" : ""; ?> ><?= $text; ?></option>
-            <?php endfor ?>
-          </select>
+        <label for="tahun">Sampai</label>
+        <input type="date" name="tanggal_akhir" value="<?= $_GET['tanggal_akhir'] ?? ''; ?>">
       </div>
       
       <div class="input-group">
@@ -117,7 +107,7 @@ if (isset($_GET['tunda'])) {
 
   <div class="charts">
     <div class="charts-card">
-      <h3 class="chart-title"><?= "Grafik Transaksi Bulan " . date('F', mktime(0, 0, 0, $month, 1)) ?></h3>
+      <h3 class="chart-title"><?= "Grafik Transaksi"?></h3>
       <canvas id="purchase-chart"></canvas>
     </div>
 
