@@ -46,7 +46,7 @@ if (isset($_POST["submit"])) {
   <div class="content middle">
       <div class="register">
           <h2>Register Karyawan</h2>
-          <form action="" method="post">
+          <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post">
             <?php 
                 if (isset($success) && $success) {
                     echo "<div class='form-success'>Data Berhasil Ditambah</div>";
@@ -54,7 +54,7 @@ if (isset($_POST["submit"])) {
                 }
             ?>
             <label for="nama">Nama</label>
-            <input type="text" name="nama" id="nama" value="<?= $_POST['nama'] ?? "" ?>" autofocus>
+            <input type="text" name="nama" id="nama" value="<?= $_POST['nama'] ?? "" ?>">
             <span class="errForm">
                 <?= ($errors['nameErr'] ?? ''); ?>
             </span>

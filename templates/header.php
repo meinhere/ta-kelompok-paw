@@ -21,7 +21,6 @@ if ($page != "home") {
 
     <link rel="website icon" href="<?= BASEASSET; ?>/img/logo/icon.png">
     <link rel="stylesheet" href="<?= BASEASSET; ?>/css/base.css">
-    <link rel="stylesheet" href="<?= BASEASSET; ?>/css/login.css">
     <link rel="stylesheet" href="<?= BASEASSET; ?>/icon/css/font-awesome.min.css" />
     <link rel="stylesheet" href="<?= BASEASSET; ?>/css/customer/navbar.css">
     <link rel="stylesheet" href="<?= BASEASSET; ?>/css/customer/styles.css">
