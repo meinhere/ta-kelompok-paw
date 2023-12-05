@@ -71,8 +71,7 @@ if (isset($_POST["submit"])) {
                 <?= ($errors['passwordErr'] ?? ''); ?>
             </span>
             <label for="password2">Konfirmasi Password</label>
-            <input type="password" name="password2" id="password2"
-                value="<?= $_POST['password2'] ?? "" ?>">
+            <input type="password" name="password2" id="password2">
             <span class="errForm">
                 <?= ($errors['password2Err'] ?? ''); ?>
             </span>

@@ -93,7 +93,7 @@ function validateLogin(&$errors, $username, $password){
         return $errors["password"] = "Password wajib terisi"; // set errors untuk password wajib diisi
     }
     $errors["username"] = "Username wajib terisi"; // set errors untuk password wajib diisi
-    $errors["password"] = "Password wajib terisi"; // set errors untuk password wajib diisi
+    if (empty($password)) $errors["password"] = "Password wajib terisi"; // set errors untuk password wajib diisi
 }
 
 // ----- Pengecekan isi inputan saat Register -----
@@ -125,8 +125,8 @@ function validateName(&$errors, $data) {
 function validateUsername(&$errors, $data) {
     if (empty($data)) {
         $errors['usernameErr'] = "Input tidak boleh kosong";
-    } elseif (!preg_match("/^[a-z0-9_]+$/", $data)) {
-        $errors['usernameErr'] = "Input harus berupa alphabet kecil dan angka saja";
+    } elseif (!preg_match("/^([a-z][0-9_]{0,})+$/", $data)) {
+        $errors['usernameErr'] = "Input setidaknya terdapat 1 alphabet kecil (tidak ada karakter spesial)";
     } elseif (strlen($data) < 3) {
         $errors['usernameErr'] = "Minimal karakter 3 ";
     } elseif (strlen($data) > 50) {
@@ -304,6 +304,8 @@ function validateStok(&$errors, $data) {
         $errors['stokErr'] = "Input harus berupa angka saja";
     } elseif (intval($data) < 1) {
         $errors['stokErr'] = "Minimal stok 1 barang";
+    } elseif (intval($data) > 500) {
+        $errors['stokErr'] = "Maksimal stok 500 barang";
     }
 }
 // ----- Validasi untuk data makanan -----

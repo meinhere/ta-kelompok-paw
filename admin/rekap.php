@@ -5,10 +5,10 @@ include "templates/header.php";
 
 require_once BASEPATH . "/data/transaksi.php";
 
-// Untuk filter 
+// Untuk filter tanggal
 if (isset($_GET['tanggal_mulai'])) {
-  $tanggal_mulai = $_GET['tanggal_mulai']; // mengambil tahun yang diinputkan dalam filter
-  $tanggal_akhir = $_GET['tanggal_akhir']; // mengambil bulan yang diinputkan dalam filter
+  $tanggal_mulai = $_GET['tanggal_mulai']; // mengambil tanggal mulai yang diinputkan dalam filter
+  $tanggal_akhir = $_GET['tanggal_akhir']; // mengambil tanggal akhir yang diinputkan dalam filter
 } else {
   $tanggal_mulai = null;
   $tanggal_akhir = null;
@@ -20,7 +20,7 @@ $value_chart = [];
 
 // Rekapan belum dibayar
 if (isset($_GET['tunda'])) {
-  // Untuk mengambil semua transaksi dalam satu bulan
+  // Untuk mengambil semua transaksi dengan status 0 sesuai dengan tanggal_mulai dan tanggal_akhir
   $transaksi = getAllOrdersByDate(0, $tanggal_mulai, $tanggal_akhir);
 
   // Untuk mengambil tanggal transaksi per hari 
@@ -46,6 +46,7 @@ if (isset($_GET['tunda'])) {
   
   $transaksi = getAllOrdersByDateAndLimit(0, $tanggal_mulai, $tanggal_akhir, $limit, $offset);
 } else {
+  // Untuk mengambil semua transaksi dengan status 1 sesuai dengan tanggal_mulai dan tanggal_akhir
   $transaksi = getAllOrdersByDate(1, $tanggal_mulai, $tanggal_akhir);
 
   // Untuk mengambil tanggal transaksi per hari 
@@ -73,6 +74,7 @@ if (isset($_GET['tunda'])) {
 }
 
 $no = ($active_page * $limit) - $limit + 1;
+
 // href untuk pagination
 if (isset($_GET['tunda'])) {
   $href = isset($_GET['tanggal_akhir']) ? "?tunda=1&tanggal_mulai=" . $_GET['tanggal_mulai'] . "&tanggal_akhir=" . $_GET['tanggal_akhir'] . "&page=" : "?tunda=1&page=";
@@ -90,12 +92,12 @@ if (isset($_GET['tunda'])) {
     <form action="<?= $_SERVER['PHP_SELF']; ?>" method="get">
       <input type="hidden" <?= isset($_GET['tunda']) ? "name='tunda' value='1'" : ""; ?>>
       <div class="input-group">
-        <label for="bulan">Dari</label>
+        <label>Dari</label>
         <input type="date" name="tanggal_mulai" value="<?= $_GET['tanggal_mulai'] ?? ''; ?>">
         </select>
       </div>
       <div class="input-group">
-        <label for="tahun">Sampai</label>
+        <label>Sampai</label>
         <input type="date" name="tanggal_akhir" value="<?= $_GET['tanggal_akhir'] ?? ''; ?>">
       </div>
       

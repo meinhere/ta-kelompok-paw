@@ -108,6 +108,7 @@ function getAllOrders() {
 
 function getAllOrdersByDate($status, $date_awal, $date_akhir) {
 	try{
+		// jika date_awal dan date_akhir == null
 		if (!$date_awal && !$date_akhir) {
 			$statement = DB->prepare("SELECT * FROM transaksi t 
 			INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
@@ -128,34 +129,9 @@ function getAllOrdersByDate($status, $date_awal, $date_akhir) {
 	} 	
 }
 
-function editOrders($kode_transaksi, $data) {
-  $kode_makanan = $data['kode_makanan'];
-  $sisa_stok = $data['sisa_stok'];
-  try{
-    // Update tabel transaksi
-		$statement = DB->prepare("UPDATE transaksi SET STATUS = :status, WAKTU_BAYAR = :waktu_bayar WHERE KODE_TRANSAKSI = :kode_transaksi");
-		$statement->bindValue(':status', 1);
-		$statement->bindValue(':waktu_bayar', date("Y-m-d H:i:s"));
-		$statement->bindValue(':kode_transaksi', $kode_transaksi);
-		$statement->execute();
-
-    // Update tabel makanan
-    for ($i = 0; $i < count($kode_makanan); $i++) {
-      $statement = DB->prepare("UPDATE makanan SET STOK_PRODUK = :sisa_stok WHERE KODE_MAKANAN = :kode_makanan");
-      $statement->bindValue(':sisa_stok', $sisa_stok[$i]);
-      $statement->bindValue(':kode_makanan', $kode_makanan[$i]);
-      $statement->execute();
-    }
-
-		header("Location: pesanan.php");
-	}
-	catch(PDOException $err){
-		echo $err->getMessage();
-  }
-}
-
 function getAllOrdersByDateAndLimit($status, $date_awal, $date_akhir, $limit, $offset) {
 	try{
+		// jika date_awal dan date_akhir == null
 		if (!$date_awal && !$date_akhir) {
 			$statement = DB->prepare("SELECT * FROM transaksi t 
 			INNER JOIN pelanggan p ON p.ID_PELANGGAN = t.ID_PELANGGAN 
@@ -190,4 +166,30 @@ function getSumTotalInOrders($status, $tanggal) {
 	catch(PDOException $err){
 		echo $err->getMessage();
 	} 	
+}
+
+function editOrders($kode_transaksi, $data) {
+  $kode_makanan = $data['kode_makanan'];
+  $sisa_stok = $data['sisa_stok'];
+  try{
+    // Update tabel transaksi
+		$statement = DB->prepare("UPDATE transaksi SET STATUS = :status, WAKTU_BAYAR = :waktu_bayar WHERE KODE_TRANSAKSI = :kode_transaksi");
+		$statement->bindValue(':status', 1);
+		$statement->bindValue(':waktu_bayar', date("Y-m-d H:i:s"));
+		$statement->bindValue(':kode_transaksi', $kode_transaksi);
+		$statement->execute();
+
+    // Update tabel makanan
+    for ($i = 0; $i < count($kode_makanan); $i++) {
+      $statement = DB->prepare("UPDATE makanan SET STOK_PRODUK = :sisa_stok WHERE KODE_MAKANAN = :kode_makanan");
+      $statement->bindValue(':sisa_stok', $sisa_stok[$i]);
+      $statement->bindValue(':kode_makanan', $kode_makanan[$i]);
+      $statement->execute();
+    }
+
+		header("Location: pesanan.php");
+	}
+	catch(PDOException $err){
+		echo $err->getMessage();
+  }
 }
