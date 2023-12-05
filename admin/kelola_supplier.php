@@ -35,7 +35,7 @@ if (isset($_POST['ubah'])) {
 
   <!-- Form Start -->
   <div class="form-content">
-    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+    <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post">
 
       <!-- Success Alert -->
       <?php 
