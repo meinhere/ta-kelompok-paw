@@ -184,6 +184,9 @@
   font-size: 1.3rem;
   margin-bottom: 15px;
 }
+.form-content .file-prev .img-prev {
+  width: 200px;
+}
 .form-content form h3 {
   font-size: 1.4rem;
   margin-bottom: 40px;

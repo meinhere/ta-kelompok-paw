@@ -94,7 +94,6 @@ if (isset($_GET['tunda'])) {
       <div class="input-group">
         <label>Dari</label>
         <input type="date" name="tanggal_mulai" value="<?= $_GET['tanggal_mulai'] ?? ''; ?>">
-        </select>
       </div>
       <div class="input-group">
         <label>Sampai</label>

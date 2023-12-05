@@ -129,7 +129,7 @@ if (isset($_POST['ubah'])) {
     <div class="file-prev">
       <?php $path = $makanan['GAMBAR_MAKANAN'] ? BASEASSET . '/img/menu/' . $makanan['NAMA_KATEGORI'] . '/' . $makanan['GAMBAR_MAKANAN'] : BASEASSET . '/img/menu/no-image.png' ?>
       <h3>Tampilan Gambar</h3>
-      <img src="<?= $path ?>" class="img-prev" alt="Gambar Makanan" style="width: 200px;">
+      <img src="<?= $path ?>" class="img-prev" alt="Gambar Makanan">
     </div>
   </div>
   <!-- Form End -->
